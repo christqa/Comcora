@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a4108207-2dab-42b1-a56b-9038fbd2cb3b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requiremenst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,6 +217,7 @@
       <item itemvalue="Python.test_login_page" />
       <item itemvalue="Python tests.Python tests in test_login_page.py" />
       <item itemvalue="Python tests.pytest in /" />
+      <item itemvalue="Python tests.Python tests for test_contacts_page.test_button1_exist" />
       <item itemvalue="Python tests.Python tests for test_login_page.test_button1_exist" />
       <item itemvalue="Python tests.Python tests for tests.test_login_page.test_button1_clicked" />
       <item itemvalue="Python tests.Python tests for tests.test_login_page.test_button1_exist" />

@@ -1,2 +1,5 @@
-.idea
+.idea/workspace.xml
 __pycache__
+pytest.cache
+DSstore
+.idea/misc.xml

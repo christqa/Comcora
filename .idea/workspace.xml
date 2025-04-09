@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4108207-2dab-42b1-a56b-9038fbd2cb3b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comcora" beforeDir="false" afterPath="$PROJECT_DIR$/Comcora" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comcora/README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,7 @@
     "Python.test_contacts_page.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "my-first-push",
     "last_opened_file_path": "/Users/christinesargsyan/Documents/Automation/Comcora",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -56,6 +59,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
@@ -218,6 +222,7 @@
       <item itemvalue="Python.test_login_page" />
       <item itemvalue="Python tests.Python tests in test_login_page.py" />
       <item itemvalue="Python tests.pytest in /" />
+      <item itemvalue="Python tests.Python tests for test_contacts_page.test_button1_exist" />
       <item itemvalue="Python tests.Python tests for test_login_page.test_button1_exist" />
       <item itemvalue="Python tests.Python tests for tests.test_login_page.test_button1_clicked" />
       <item itemvalue="Python tests.Python tests for tests.test_login_page.test_button1_exist" />

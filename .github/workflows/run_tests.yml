@@ -56,7 +56,7 @@ jobs:
         run: rm -rf .git
       - name: Configure Git
         run: |
-        git config --global user.email "chsargsyan@gmail.com"
-        git config --global user.name "christqa"
+           git config --global user.email "chsargsyan@gmail.com"
+           git config --global user.name "christqa"
 
 

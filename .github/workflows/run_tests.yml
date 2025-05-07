@@ -51,6 +51,11 @@ jobs:
         with:
            name: allure-results
            path: allure-results/
-
+      name: Clean up git repo
+      run: rm -rf .git
+      - name: Configure Git
+      run: |
+        git config --global user.email "chsargsyan@gmail.com"
+        git config --global user.name "christqa"
 
 

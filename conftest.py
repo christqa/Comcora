@@ -11,24 +11,29 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
+
 @pytest.fixture(scope="function")
 def browser():
-    options = webdriver.ChromeOptions() if BROWSER == "chrome" else webdriver.FirefoxOptions()
-
-    if HEADLESS:
-        options.add_argument("--headless")
-
     if BROWSER == "chrome":
-        browser = webdriver.Chrome(options=options)
+        options = webdriver.ChromeOptions()
+        if HEADLESS:
+            options.add_argument("--headless")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--window-size=1920,1080")
+        driver = webdriver.Chrome(options=options)
     else:
-        browser = webdriver.Firefox(options=options)
+        options = webdriver.FirefoxOptions()
+        if HEADLESS:
+            options.add_argument("--headless")
+        driver = webdriver.Firefox(options=options)
 
-    browser.implicitly_wait(IMPLICIT_WAIT)
-    browser.get(BASE_URL)
-
-    yield browser
-
-    browser.quit()
+    driver.implicitly_wait(IMPLICIT_WAIT)
+    driver.get(BASE_URL)
+    yield driver
+    driver.quit()
 
 
 @pytest.fixture(scope="function")

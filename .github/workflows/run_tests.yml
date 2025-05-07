@@ -39,9 +39,6 @@ jobs:
         run: pip install -r requirements.txt
 
 
-      - name: Run tests with Pytest
-        run: pytest
-
       - name: Run tests and generate Allure report
         run: |
           pytest --alluredir=allure-results
@@ -54,6 +51,7 @@ jobs:
 
       - name: Clean up git repo
         run: rm -rf .git
+
       - name: Configure Git
         run: |
            git config --global user.email "chsargsyan@gmail.com"

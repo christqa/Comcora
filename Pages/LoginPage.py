@@ -1,9 +1,9 @@
-from Pages.base_page import BasePage
+from Pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-button_selector = (By.XPATH, "/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]/form/div[2]/button[1]")
+button_selector = (By.CSS_SELECTOR, ".gap-x-2.rounded-2xl.py-4.px-0")
 
 class LoginPage(BasePage):
 
@@ -21,3 +21,9 @@ class LoginPage(BasePage):
             EC.visibility_of_element_located(button_selector)
         )
         return self.button().is_displayed()
+
+    def test_dashboard_elements(login):
+        driver = login  # This is the logged-in browser session
+
+        # Now do your checks
+        assert driver.find_element(By.ID, "welcome-message").is_displayed()

@@ -18,49 +18,37 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture
 def browser():
-    options = None
     driver = None
 
     if BROWSER == "chrome":
         options = webdriver.ChromeOptions()
 
-        # Headless options
         if HEADLESS:
-            options.add_argument("--headless")
+            options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--disable-gpu")
+            options.add_argument("--remote-debugging-port=9222")
             options.add_argument("--window-size=1920,1080")
 
-        # Create a unique temp directory for the user data directory
+        # Use temp user data dir to avoid lock conflicts
         temp_profile = tempfile.mkdtemp()
         options.add_argument(f"--user-data-dir={temp_profile}")
 
-        # Initialize ChromeDriver
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
 
-    else:  # Firefox fallback
+    else:  # Fallback to Firefox
         options = webdriver.FirefoxOptions()
         if HEADLESS:
             options.add_argument("--headless")
-
-        # Initialize FirefoxDriver
         service = FirefoxService(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=service, options=options)
 
-    # Implicit wait setup
     driver.implicitly_wait(IMPLICIT_WAIT)
     driver.get(BASE_URL)
-
-    yield driver  # Provide driver to tests
-
-    # Clean-up after test completes
+    yield driver
     driver.quit()
-
-    # Clean up the temporary profile directory after the test
-    if 'temp_profile' in locals():
-        shutil.rmtree(temp_profile)
 
 @pytest.fixture(scope="function")
 def login(request, browser):

@@ -15,11 +15,23 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+import tempfile
+import pytest
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture
 def browser():
+    options = None
+    driver = None
+
     if BROWSER == "chrome":
         options = webdriver.ChromeOptions()
+
+        # Headless options
         if HEADLESS:
             options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
@@ -27,6 +39,11 @@ def browser():
             options.add_argument("--disable-gpu")
             options.add_argument("--window-size=1920,1080")
 
+        # Optional: Use unique temporary profile for each test
+        temp_profile = tempfile.mkdtemp()
+        options.add_argument(f"--user-data-dir={temp_profile}")  # Unique user data dir for each test
+
+        # Initialize ChromeDriver
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
 
@@ -35,13 +52,19 @@ def browser():
         if HEADLESS:
             options.add_argument("--headless")
 
+        # Initialize FirefoxDriver
         service = FirefoxService(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=service, options=options)
 
+    # Setup driver
     driver.implicitly_wait(IMPLICIT_WAIT)
     driver.get(BASE_URL)
-    yield driver
+
+    yield driver  # Provide driver to tests
+
+    # Clean-up after test completes
     driver.quit()
+
 
 @pytest.fixture(scope="function")
 def login(request, browser):

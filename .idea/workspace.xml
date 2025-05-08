@@ -74,7 +74,7 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_login_page.test_invalid_login">
+  <component name="RunManager" selected="Python tests.Python tests for test_main_page.test_menu_item_is_displayed">
     <configuration name="Python tests for test_login_page.test_invalid_login" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Comcora" />
       <option name="ENV_FILES" value="" />
@@ -197,8 +197,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_login_page.test_invalid_login" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_menu_item_is_displayed" />
+        <item itemvalue="Python tests.Python tests for test_login_page.test_invalid_login" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_Payment_menuItem_present" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_Home_menu_button_isActive" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_Payments_menu_button_isActive" />

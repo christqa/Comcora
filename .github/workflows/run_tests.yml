@@ -23,25 +23,32 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'  # Or '11' if that's what your project requires
+          java-version: '17'  # Change to '11' if needed
 
-      - name: Download Allure CLI
+      - name: Download Allure CLI (latest)
         run: |
-          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
-          tar -xvzf allure-2.27.0.tgz
-          sudo mv allure-2.27.0 /opt/allure
+          LATEST_URL=$(curl -s https://api.github.com/repos/allure-framework/allure2/releases/latest \
+            | grep "browser_download_url.*tgz" \
+            | cut -d '"' -f 4)
+          wget "$LATEST_URL" -O allure.tgz
+          tar -xvzf allure.tgz
+          DIR_NAME=$(tar -tf allure.tgz | head -1 | cut -f1 -d"/")
+          sudo mv "$DIR_NAME" /opt/allure
           sudo ln -s /opt/allure/bin/allure /usr/bin/allure
 
-      - name: Download Allure CLI
+      - name: Run tests and generate Allure results
         run: |
-          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
-          tar -xvzf allure-2.27.0.tgz
-          sudo mv allure-2.27.0 /opt/allure
-          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+          pytest -n 1 --alluredir=allure-results
 
-      - name: Generate Allure Report
+      - name: Generate Allure report
         run: |
           allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
 
       - name: Clean up git repo
         run: rm -rf .git

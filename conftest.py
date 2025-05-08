@@ -10,10 +10,8 @@ from config import INVALID_TEST_PASSWORD, INVALID_TEST_PIN,INVALID_TEST_USERNAME
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
+import tempfile
+import shutil
 
 import tempfile
 import pytest
@@ -26,20 +24,38 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 @pytest.fixture
 def browser():
-    options = webdriver.ChromeOptions()
+    options = None
+    driver = None
 
-    if HEADLESS:
-        options.add_argument("--headless")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--window-size=1920,1080")
+    if BROWSER == "chrome":
+        options = webdriver.ChromeOptions()
 
-    # Initialize ChromeDriver
-    service = ChromeService(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=options)
+        # Headless options
+        if HEADLESS:
+            options.add_argument("--headless")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--disable-gpu")
+            options.add_argument("--window-size=1920,1080")
 
-    # Setup driver
+        # Create a unique temp directory for the user data directory
+        temp_profile = tempfile.mkdtemp()
+        options.add_argument(f"--user-data-dir={temp_profile}")
+
+        # Initialize ChromeDriver
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+
+    else:  # Firefox fallback
+        options = webdriver.FirefoxOptions()
+        if HEADLESS:
+            options.add_argument("--headless")
+
+        # Initialize FirefoxDriver
+        service = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service, options=options)
+
+    # Implicit wait setup
     driver.implicitly_wait(IMPLICIT_WAIT)
     driver.get(BASE_URL)
 
@@ -47,6 +63,10 @@ def browser():
 
     # Clean-up after test completes
     driver.quit()
+
+    # Clean up the temporary profile directory after the test
+    if 'temp_profile' in locals():
+        shutil.rmtree(temp_profile)
 
 @pytest.fixture(scope="function")
 def login(request, browser):

@@ -4,7 +4,6 @@ on:
   push:
 
 jobs:
-
   test:
     runs-on: ubuntu-latest
 
@@ -20,17 +19,23 @@ jobs:
       - name: Install Chrome
         run: |
           sudo apt-get update
-          sudo apt-get install -y wget curl unzip gnupg
+          sudo apt-get install -y wget gnupg
           wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
 
-      - name: Install matching ChromeDriver
+      - name: Install ChromeDriver
         run: |
+          # Get the installed Chrome version
           CHROME_VERSION=$(google-chrome --version | grep -oP "\d+\.\d+\.\d+\.\d+")
-          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_WITH_CHROMEVERSION/${CHROME_VERSION%%.*}")
+          MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d'.' -f1)  # Get the major version (e.g., 136 for version 136.x.x.x)
+          
+          # Fetch the corresponding ChromeDriver version
+          CHROMEDRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${MAJOR_VERSION}")
           echo "Installing ChromeDriver version $CHROMEDRIVER_VERSION for Chrome $CHROME_VERSION"
+          
+          # Download and install ChromeDriver
           wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
@@ -39,7 +44,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-
       - name: Run tests and generate Allure report
         run: |
           pytest --alluredir=allure-results
@@ -47,15 +51,15 @@ jobs:
       - name: Upload Allure results as artifact
         uses: actions/upload-artifact@v4
         with:
-           name: allure-results
-           path: allure-results/
+          name: allure-results
+          path: allure-results/
 
       - name: Clean up git repo
         run: rm -rf .git
 
       - name: Configure Git
         run: |
-           git config --global user.email "chsargsyan@gmail.com"
-           git config --global user.name "christqa"
+          git config --global user.email "chsargsyan@gmail.com"
+          git config --global user.name "christqa"
 
 

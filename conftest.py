@@ -23,38 +23,21 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
+
 @pytest.fixture
 def browser():
-    options = None
-    driver = None
+    options = webdriver.ChromeOptions()
 
-    if BROWSER == "chrome":
-        options = webdriver.ChromeOptions()
+    if HEADLESS:
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--window-size=1920,1080")
 
-        # Headless options
-        if HEADLESS:
-            options.add_argument("--headless=new")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--window-size=1920,1080")
-
-        # Optional: Use unique temporary profile for each test
-        temp_profile = tempfile.mkdtemp()
-        options.add_argument(f"--user-data-dir={temp_profile}")  # Unique user data dir for each test
-
-        # Initialize ChromeDriver
-        service = ChromeService(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
-
-    else:  # Firefox fallback
-        options = webdriver.FirefoxOptions()
-        if HEADLESS:
-            options.add_argument("--headless")
-
-        # Initialize FirefoxDriver
-        service = FirefoxService(GeckoDriverManager().install())
-        driver = webdriver.Firefox(service=service, options=options)
+    # Initialize ChromeDriver
+    service = ChromeService(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=service, options=options)
 
     # Setup driver
     driver.implicitly_wait(IMPLICIT_WAIT)
@@ -64,7 +47,6 @@ def browser():
 
     # Clean-up after test completes
     driver.quit()
-
 
 @pytest.fixture(scope="function")
 def login(request, browser):

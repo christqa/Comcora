@@ -40,7 +40,7 @@ def browser():
 
         # Create a unique temp directory for the user data directory
         temp_profile = tempfile.mkdtemp()
-        options.add_argument(f"--user-data-dir={temp_profile}")
+        #options.add_argument(f"--user-data-dir={temp_profile}")
 
         # Initialize ChromeDriver
         service = ChromeService(ChromeDriverManager().install())

@@ -1,14 +1,16 @@
-name: Automated tests
+name: UI Tests
 
-on:
-  push:
+on: [push, pull_request]
 
 jobs:
-  test:
+  ui-tests:
     runs-on: ubuntu-latest
+    env:
+      HEADLESS: "true"
+      BROWSER: "chrome"
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -16,47 +18,29 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'  # Change to '11' if needed
-
-      - name: Download Allure CLI (latest)
+      - name: Install dependencies
         run: |
-          LATEST_URL=$(curl -s https://api.github.com/repos/allure-framework/allure2/releases/latest \
-            | grep "browser_download_url.*tgz" \
-            | cut -d '"' -f 4)
-          wget "$LATEST_URL" -O allure.tgz
-          tar -xvzf allure.tgz
-          DIR_NAME=$(tar -tf allure.tgz | head -1 | cut -f1 -d"/")
-          sudo mv "$DIR_NAME" /opt/allure
-          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run tests and generate Allure results
+      - name: Install Chrome
         run: |
-          pytest -n 1 --alluredir=allure-results
+          sudo apt-get update
+          sudo apt-get install -y wget gnupg unzip
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
 
-      - name: Generate Allure report
+      - name: Install ChromeDriver matching Chrome
         run: |
-          allure generate allure-results --clean -o allure-report
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          DRIVER_VERSION=$(curl -s "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION}")
+          wget -q https://chromedriver.storage.googleapis.com/${DRIVER_VERSION}/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
 
-      - name: Upload Allure report as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
-
-
-      - name: Clean up git repo
-        run: rm -rf .git
-
-      - name: Configure Git
+      - name: Run tests
         run: |
-          git config --global user.email "chsargsyan@gmail.com"
-          git config --global user.name "christqa"
-
-
+          pytest

@@ -41,6 +41,8 @@ class MainPage(BasePage):
     def image_logo(self):
         return self.find(*self.image_logo_selector)
 
+
+    @allure.step("logo_is_displayed")
     def image_logo_is_displayed(self):
         WebDriverWait(self.browser, 10).until(
             EC.visibility_of_element_located(self.image_logo_selector)

@@ -1,18 +1,12 @@
 import time
-import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
 from config import VALID_TEST_PASSWORD, VALID_TEST_PIN,VALID_TEST_USERNAME
 from config import INVALID_TEST_PASSWORD, INVALID_TEST_PIN,INVALID_TEST_USERNAME
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
-import tempfile
 import shutil
-
 import tempfile
 import pytest
 from selenium import webdriver

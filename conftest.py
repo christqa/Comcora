@@ -9,32 +9,39 @@ from config import VALID_TEST_PASSWORD, VALID_TEST_PIN,VALID_TEST_USERNAME
 from config import INVALID_TEST_PASSWORD, INVALID_TEST_PIN,INVALID_TEST_USERNAME
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
-
 from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
-@pytest.fixture(scope="function")
+
+@pytest.fixture
 def browser():
     if BROWSER == "chrome":
         options = webdriver.ChromeOptions()
         if HEADLESS:
-            options.add_argument("--headless")
+            options.add_argument("--headless=new")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--disable-gpu")
             options.add_argument("--window-size=1920,1080")
-        driver = webdriver.Chrome(options=options)
-    else:
+
+        service = ChromeService(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+
+    else:  # Firefox fallback
         options = webdriver.FirefoxOptions()
         if HEADLESS:
             options.add_argument("--headless")
-        driver = webdriver.Firefox(options=options)
+
+        service = FirefoxService(GeckoDriverManager().install())
+        driver = webdriver.Firefox(service=service, options=options)
 
     driver.implicitly_wait(IMPLICIT_WAIT)
     driver.get(BASE_URL)
     yield driver
     driver.quit()
-
 
 @pytest.fixture(scope="function")
 def login(request, browser):

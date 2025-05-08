@@ -276,12 +276,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/conftest.py</url>
-          <line>11</line>
+          <line>7</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/conftest.py</url>
-          <line>70</line>
+          <line>64</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

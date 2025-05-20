@@ -2,7 +2,6 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
 from config import VALID_TEST_PASSWORD, VALID_TEST_PIN,VALID_TEST_USERNAME
 from config import INVALID_TEST_PASSWORD, INVALID_TEST_PIN,INVALID_TEST_USERNAME
 from config import BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT

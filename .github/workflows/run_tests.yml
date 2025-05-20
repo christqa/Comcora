@@ -50,5 +50,4 @@ jobs:
           sudo chmod +x /usr/local/bin/chromedriver
 
       - name: Run tests
-        run: |
-          pytest
+        run: pytest --maxfail=1 --disable-warnings -v

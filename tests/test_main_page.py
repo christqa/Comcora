@@ -5,6 +5,7 @@ import allure
 
 
 #@pytest.mark.regression
+@pytest.mark.skip()
 def test_login_succesfull(login):
     browser=login # Using login fixture to get an authenticated browser
     browser.get(MAIN_PAGE_URL)

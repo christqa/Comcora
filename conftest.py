@@ -32,6 +32,11 @@ def browser():
             options.add_argument("--window-size=1920,1080")
             options.add_argument("--disable-software-rasterizer")
             options.add_argument("--disable-features=VizDisplayCompositor")
+            options.add_argument('--ignore-certificate-errors')
+            options.add_argument('--allow-insecure-localhost')
+            options.add_argument('--disable-web-security')
+
+
 
 
 # Use temp user data dir to avoid lock conflicts

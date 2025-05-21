@@ -1,0 +1,806 @@
+{
+  "general": {
+    "localization": {
+      "nativeLangName": "Eesti keel",
+      "languageSelection": {
+        "mobile": "Valige keel",
+        "web": "Keeleressursside valik"
+      },
+      "languageSelectionApplyControl": "Muuda"
+    },
+    "theme": {
+      "lightMode": "Kerge teema",
+      "darkMode": "Tume teema"
+    },
+    "goToHomeScreen": {
+      "mobile": "Mine avalehele!",
+      "web": "Avaleht"
+    },
+    "screenNotExists": "Sellist ekraani ei eksisteeri.",
+    "error": {
+      "anErrorHasOccurred": "On toimunud viga"
+    }
+  },
+  "navigation": {
+    "tabs": {
+      "contactWithTheBank": {
+        "title": "Kontakt pangaga",
+        "label": "Kontakt pangaga"
+      },
+      "home": {
+        "title": "Avaleht",
+        "label": "Avaleht"
+      },
+      "payments": {
+        "title": "Maksed",
+        "label": "Maksed"
+      },
+      "history": {
+        "title": "Ajalugu",
+        "label": "Ajalugu"
+      }
+    }
+  },
+  "dates": {
+    "today": "Täna",
+    "yesterday": "Eile",
+    "day": "päeval",
+    "month": {
+      "title": "kuu",
+      "short": {
+        "1": "jaan.",
+        "2": "veebr.",
+        "3": "märts",
+        "4": "apr.",
+        "5": "mai",
+        "6": "juuni",
+        "7": "juuli",
+        "8": "aug.",
+        "9": "sept.",
+        "10": "okt.",
+        "11": "nov.",
+        "12": "dets."
+      },
+      "long": {
+        "1": "jaanuar",
+        "2": "veebruar",
+        "3": "märts",
+        "4": "aprill",
+        "5": "mai",
+        "6": "juuni",
+        "7": "juuli",
+        "8": "august",
+        "9": "september",
+        "10": "oktoober",
+        "11": "november",
+        "12": "detsember"
+      },
+      "longQuantified": {
+        "1": "jaanuar",
+        "2": "veebruar",
+        "3": "märts",
+        "4": "aprill",
+        "5": "mai",
+        "6": "juuni",
+        "7": "juuli",
+        "8": "august",
+        "9": "september",
+        "10": "oktoober",
+        "11": "november",
+        "12": "detsember"
+      }
+    },
+    "weekday": {
+      "short": {
+        "1": "Mon",
+        "2": "Tue",
+        "3": "Wed",
+        "4": "Thu",
+        "5": "Fri",
+        "6": "Sat",
+        "7": "Sun"
+      }
+    }
+  },
+  "transactionType": {
+    "outgoing": "Väljuv ülekanne",
+    "incoming": "Sissetulev ülekanne",
+    "between": "Nende vahel",
+    "atm": "Sularaha väljavõtmine"
+  },
+  "accounts": {
+    "widget": {
+      "totalFunds": "Kokku vahendeid",
+      "closeAccount": "Sulge konto",
+      "actionWithAccount": "Tegevused kontoga",
+      "transferToAccount": "Kanna kontole",
+      "savingsAccounts": "Hoiukontod",
+      "personalAccounts": "Isiklikud kontod",
+      "multiCurrencyAccounts": "Mitme valuuta kontod"
+    },
+    "messages": {
+      "accountNameChanged": "Konto nimi edukalt muudetud",
+      "cardNameChanged": "Kaardi nimi edukalt muudetud",
+      "dataCopied": "Andmed edukalt kopeeritud",
+      "accountNumberCopied": "Konto number on edukalt kopeeritud",
+      "recipientCopied": "Saaja on edukalt kopeeritud",
+      "accountClose": "Konto suletakse ja allesjäänud vahendid kantakse teie valitud teisele kontole",
+      "applicationInProgress": "Teie taotlus on töötlemisel!"
+    }
+  },
+  "auth": {
+    "errors": {
+      "unableToProceed": "Antud volitustega ei saa jätkata.",
+      "authenticationFailed": "Autentimine ebaõnnestus"
+    },
+    "confirmation": {
+      "enterCode": "Sisestage sõnumi kood",
+      "enterSentCode": "Sisestage telefoninumbrile saadetud kood",
+      "askNewCodeAfter": "Küsi uus kood pärast",
+      "askNewCode": "Küsi uus kood"
+    },
+    "pinSetUp": {
+      "requestHasBeenSentOnYourDevice": "The request has been sent to your device.",
+      "compareTheCodesAndEnterPin1": "Compare the codes and enter PIN1",
+      "comeUpWithCode": "Create a code",
+      "codeActiveOnly": "This code will only be valid for",
+      "forBrowser": "this browser",
+      "editCodeMessage": "The code for quick login to the bank can be changed in the “Settings” section",
+      "enterPinCode": "Enter the PIN code for authorization",
+      "forgotCode": "Forgot your code?",
+      "codeSet": "Your code has been successfully set"
+    }
+  },
+  "cards": {
+    "title": "Kaart",
+    "yourCardWillBe": "Teie kaart saab olema",
+    "frozen": {
+      "web": "külmutatud",
+      "mobile": "Külmuta"
+    },
+    "unfrozen": {
+      "web": "sulatatud",
+      "mobile": "Sulatada"
+    },
+    "freeze": "Külmuta",
+    "unfreeze": "Sulatada",
+    "alwaysAnOptionToDefrost": "Alati on võimalus see üles sulatada ja\n kasutada seda tulevikus",
+    "youCanAlwaysUseIt": "Saate seda alati uuesti kasutada",
+    "action": "Tegevused",
+    "cardAction": "Kaardi tegevused",
+    "details": "Andmed",
+    "hideDetails": "Peida andmed",
+    "until": "Kuni",
+    "canBeUsedUntil": "Võib kasutada kuni",
+    "newCardSetup": "Seadista uus kaart",
+    "reissue": {
+      "options": {
+        "lost": "Kaotatud",
+        "stolen": "Varastatud",
+        "noUse": "Ei kasuta",
+        "other": "Muu"
+      },
+      "reissueMatter": "Kaardi taaskasutamise põhjus",
+      "reissueCard": "Taaskäivita kaart",
+      "title": "Taaskäivita",
+      "closeCard": "Sulge kaart",
+      "closeCardMatter": "Kaardi sulgemise põhjus"
+    },
+    "messages": {
+      "reissueCard": "Kaart on edukalt taaskäivitatud",
+      "closed": "edukalt suletud",
+      "allCardWillBeBlocked": "Vana kaart blokeeritakse ja see lakkab töötamast kõikides\n teenustes. Uuel kaardil on erinevad andmed",
+      "cardWillBeFrozen": "Teie kaart saab olema külmutatud",
+      "cardWillBeUnfrozen": "Teie kaart saab olema sulatatud",
+      "reissueCardWarning": "See kaart blokeeritakse ja lakkab töötamast kõikides teenustes. Uuel kaardil on erinevad andmed.\n Saate valida uue kaardi.",
+      "cardReissueProgress": "Kaardi taaskäivitamine",
+      "soonWillBeInApp": "See ilmub peagi rakendusse",
+      "cardClose": "Pärast kaardi sulgemist jääb kontolt juurdepääs rahalistele vahenditele",
+      "fileSaved": "Fail salvestati edukalt"
+    }
+  },
+  "einvoices": {
+    "fromEveryCompany": "Kõigilt ettevõtetelt korraga",
+    "fromSingleCompany": "Üksik ettevõte",
+    "active": "Aktiivne",
+    "ended": "Lõpetatud",
+    "lifeInsurance": "Elukindlustus",
+    "editAgreement": "Muuda lepingut",
+    "withNoCommission": "Ilma komisjonitasuta",
+    "chargeLimit": "Mahaarvamise limiit",
+    "title": "E-arve nimi",
+    "referenceNumber": "Viitenumber",
+    "payer": "Maksja",
+    "details": "Üksikasjad",
+    "paymentDue": "Maksetähtaeg",
+    "status": "Staatus",
+    "filters": {
+      "manualPayment": "Käsitsi maksmine",
+      "autoCharge": "Automaatne tasumine",
+      "regular": "Regulaarsed",
+      "nonRegular": "Ebaühtlased"
+    },
+    "agreements": {
+      "myAgreements": "Minu lepingud",
+      "agreementEdited": "Leping edukalt muudetud",
+      "documentNumber": "Dokumendi number",
+      "invoiceSender": "E-arve saatja",
+      "senderRegistrationNumber": "E-arve saatja registrinumber",
+      "invoicePaymentIban": "E-arve makse IBAN",
+      "buyer": "Ostja",
+      "buyerRegistrationNumber": "Ostja registrinumber",
+      "buyerIban": "Ostja IBAN",
+      "activeFrom": "Aktiivne alates",
+      "paymenTotal": "Makse summa",
+      "partialDebit": "Osaline debiteerimine",
+      "paymentsHistory": "Maksete ajalugu",
+      "autoPaymentAgreementHistory": "Automaatse makselepingu ajalugu",
+      "editAgreement": "Muuda lepingut",
+      "endAgreement": "Lõpeta leping",
+      "constantPaymentAgreement": "Püsikorralduse leping",
+      "endAgreementInfo": "Leping suletakse, kuid jääb vaatamiseks nimekirja",
+      "seeAgreement": "Vaata lepingut",
+      "makeAgreementSuccessfully": "Leping edukalt sõlmitud",
+      "salesman": "Müüja",
+      "paymentMethod": "Makseviis",
+      "paymentDay": "Maksepäev",
+      "chargeLimit": "Mahaarvamise limiit",
+      "params": "Parameters"
+    },
+    "invoices": {
+      "newEInvoice": "Uus e-arve",
+      "myInvoices": "Minu e-arved",
+      "allAccounts": "Kõik kontod",
+      "eInvoice": "E-arve",
+      "description": "Kirjeldus",
+      "orderSentSuccessfully": "Tellimus edukalt saadetud",
+      "contactDetailsInfoAlertDescription": "E-arvete tellimiseks saadame andmed nende operaatorile. E-posti muutumisel uuendame automaatselt ka kontaktandmed.",
+      "confirmOrder": "Kinnita tellimus",
+      "willBeCharged": "Maha arvestatakse",
+      "payDue": "Maksa tähtajaks",
+      "pay": "Maksa",
+      "dateOfReceival": "Vastuvõtmise kuupäev",
+      "buyerName": "Ostja nimi",
+      "senderIban": "E-arve saatja IBAN",
+      "insurancePayment": "Kindlustusmakse",
+      "transferFrom": "Ülekanne kust",
+      "recipient": "Saaja",
+      "sumToBeCharged": "Mahaarvatav summa",
+      "noCommission": "ilma komisjonitasuta",
+      "byPaymentDate": "Maksetähtaja järgi",
+      "byInvoiceDate": "Arve kuupäeva järgi",
+      "byDescendingAmount": "Summalt kahanevalt",
+      "byAscendingAmount": "Summalt kasvavalt",
+      "pendingPayment": "Ootab makset",
+      "paid": "Makstud",
+      "sellerOrAgreementTitle": "Müüja või lepingu nimi",
+      "eInvoiceDeleteWarning": "E-arve kustutatakse ilma taastamisvõimaluseta"
+    }
+  },
+  "transactions": {
+    "pdfFile": "PDF fail",
+    "signedPdf": "Allkirjastatud PDF",
+    "latestOperations": "Viimased tehingud",
+    "incomingTransfer": "Saabuva ülekanne",
+    "outgoingTransfer": "Väljuv ülekanne",
+    "paymentForGoodsAndServices": "Kauba- ja teenustasu",
+    "transferToComcoraClient": "Ülekanne Comcora kliendile",
+    "cashWithdrawal": "Sularaha väljavõtmine",
+    "serviceFee": "Teenustasu",
+    "currencyConversion": "Valuutavahetus",
+    "notSpecified": "Määramata",
+    "youTransferred": "Te edastasite",
+    "outgoingPayment": "Väljaminev makse",
+    "incomingPayment": "Sissetulev makse",
+    "betweenAccounts": "Konto vahel",
+    "youReceived": "Teie saite",
+    "debitFromAccount": "Kontolt",
+    "creditToAccount": "Kontole",
+    "recipientIban": "Saaja IBAN",
+    "recipientAccountNumber": "Saatja konto number",
+    "senderIban": "Saaja IBAN",
+    "senderAccountNumber": "Saatja konto number",
+    "reference": "viide",
+    "referenceNumber": "Viitenumber",
+    "bank": "Pank",
+    "addContact": "Lisa kontakt",
+    "paymentDetails": "Makse üksikasjad",
+    "messageToRecipient": "Sõnum saajale",
+    "messageFromSender": "Sõnum saatjalt",
+    "operationsHistory": "Tehingute ajalugu",
+    "commission": "Komisjon",
+    "transactionTypes": {
+      "operationType": "Tehingu tüüp",
+      "incoming": "Sissetulekud",
+      "outgoing": "Väljamaksed",
+      "serviceOrGoodsPayment": "Teenuste ja kaupade maksmine",
+      "comcoraClientTransfer": "Comcora kliendile ülekandmine",
+      "cashWithdraw": "Raha väljavõtmine",
+      "serviceFee": "Teenustasu",
+      "currencyExchange": "Valuuta vahetamine",
+      "cashIn": "Raha sissemakse",
+      "betweenOwnAccounts": "Omandi kontode vahel",
+      "payments": "Kaarditehingud",
+      "transfers": "Ülekanded",
+      "withdrawal": "Väljamakse",
+      "deposit": "Sissemakse",
+      "betweenAccounts": "Kontode vahel",
+      "transactionType": "Transaktsiooni tüüp"
+    },
+    "status": {
+      "completed": "Toiming lõpetatud!",
+      "failed": "Toiming tagasi lükatud!",
+      "pending": "Toiming ootel!"
+    },
+    "cardsAccounts": "Kaardid ja kontod",
+    "exportFormat": "Avalduse vorming"
+  },
+  "payments": {
+    "main": {
+      "favorite": "Lemmik",
+      "paymentsAndTransfers": "Maksed ja Ülekanded",
+      "newPayment": "Uus Makse",
+      "moneyRequest": "Raha Nõue",
+      "betweenAccounts": "Kontode Vahel",
+      "insideCountry": "Riigisiseselt",
+      "current": "Aktuaalsed",
+      "operationHistory": "Tehingute Ajalugu",
+      "addRecipient": "Lisa Saaja",
+      "contactsList": "Kontaktiloend",
+      "fromWhereToTransfer": "Kust Üle Kanda",
+      "whereToTransfer": "Kuhu Üle Kanda",
+      "fromWhere": "Kust",
+      "youTransferred": "Sa Kandsid Üle",
+      "outgoingPayment": "Väljaminev makse",
+      "incomingPayment": "Sissetulev makse",
+      "youReceived": "Sa Said Üle Kantud",
+      "contacts": "Kontaktid",
+      "accountDetails": "Konto Andmed",
+      "noCommission": "Ilma Komisjoni",
+      "editAndAdd": "Muuda ja Lisa",
+      "contactsListEmpty": "Kontaktide Nimekiri On Tühi",
+      "contactSyncMessage": "Kontaktide sünkroonimiseks luba juurdepääs telefoni seadetes",
+      "more": "Veel",
+      "transfers": "Ülekanded",
+      "addDetails": "Lisa Andmed",
+      "symbols": "Sümbolit",
+      "moneyTransfer": "Raha Ülekanne"
+    },
+    "accountDetails": {
+      "title": "Konto Andmed",
+      "optional": "Valikuline"
+    },
+    "betweenAccounts": {
+      "title": "Kontode Vahel",
+      "writeOffAmount": "Mahakandmise Summa",
+      "instantCreditingNoCommission": "Kohene Krediit, Ilma Komisjoni",
+      "insufficientFunds": "Kontol pole piisavalt vahendeid"
+    },
+    "newPayment": {
+      "title": "Uus Makse",
+      "transferByDetails": "Ülekanne Andmete Järgi",
+      "IBANAdded": "IBAN Edukalt Lisatud",
+      "addBank": "Lisa Pank",
+      "person": "Eraisik",
+      "company": "Ettevõte"
+    },
+    "requestMoney": {
+      "title": "Raha Nõue",
+      "requestCopiedToClipboard": "Nõue Kopeeritud Lõikelauale",
+      "moneyRequestFrom": "Raha Nõue Alates",
+      "amount": "Summa",
+      "comment": "Kommentaar",
+      "chooseSticker": "Vali Kleebis",
+      "account": "Konto",
+      "explanation": "Selgitus",
+      "paymentReference": "Makse Viide Comcora Klientidele",
+      "enterAmount": "Sisesta Summa Nõudeks",
+      "sendRequest": "Saada Nõue",
+      "requestSent": "Nõue Saadetud",
+      "requestDescription": "Saada päring summale"
+    },
+    "success": {
+      "paymentDone": "Makse Tehtud",
+      "transferred": "Kantud",
+      "writeOffFromAccount": "Mahakandmine Kontolt",
+      "repeatOperation": "Korda Tehingut",
+      "statement": "Väljavõte",
+      "beneficiaryAccount": "Saaja konto",
+      "debitingAccount": "Mahakandmise konto",
+      "beneficiaryBank": "Saaja pank",
+      "transactionDate": "Tehingu kuupäev",
+      "saveStatement": "Salvesta väljavõte"
+    }
+  },
+  "contacts": {
+    "locationDetails": "Teie asukoha andmed",
+    "accessForYourLocation": "taotleb luba teie asukohaandmete kasutamiseks",
+    "openUntil": "Avatud kuni",
+    "headOfficeComcora": "Comcora peakontor",
+    "serviceCenter": "Teeninduskeskus",
+    "app": "Comcora rakendus",
+    "alwaysInHand": "comcora alati käepärast",
+    "route": "Marsruut",
+    "site": "Veebisait",
+    "deleteContact": "Kustuta kontakt",
+    "editContact": "Muuda kontakti",
+    "addContact": "Lisa kontakt",
+    "addContactDesc": "Tehke ülekandeid, redigeerige arveid",
+    "contactDeletionWarning": "Kontakt kustutatakse ilma taastamise võimaluseta",
+    "newContact": {
+      "title": "Uus Kontakt",
+      "newAccount": "Uus konto",
+      "added": "Kontakt Lisatud",
+      "individual": "Eraisik",
+      "business": "Ettevõte"
+    },
+    "placeholders": {
+      "accountNumber": "Konto number",
+      "fullName": "Täisnimi",
+      "email": "E-post",
+      "selectCountry": "Vali Riik",
+      "selectCurrency": "Vali Valuuta"
+    },
+    "bankAccountDetails": "Pangakonto andmed",
+    "account": {
+      "editAccount": "Konto muutmine",
+      "copyDetails": "Kopeeri rekvisiidid",
+      "deleteAccount": "Kustuta konto",
+      "deleteAllAccounts": "Kustuta kõik kontod?",
+      "accountDeletionWarning": "Konto kustutatakse jäädavalt",
+      "allAccountsDeletionWarning": "Kõigi kontode kustutamisel jääb teie kontakt loendisse",
+      "addAccount": "Lisa konto"
+    },
+    "availableAccounts": "Saadaolevad kontod",
+    "accountDelete": "Konto on edukalt kustutatud",
+    "accountsDelete": "Kontod on edukalt kustutatud",
+    "deleteThisContact": "Kustutada see kontakt?",
+    "deleteContactWarning": "Seotud kontod ja andmed kustutatakse samuti. Need ei kuvata enam loendis",
+    "whom": "Kellele",
+    "searchText": "Otsige kontonumbri või nime järgi"
+  },
+  "profile": {
+    "personalDetails": {
+      "title": "Isikuandmed",
+      "details": "Isikuandmed",
+      "appTheme": "Rakenduse teema",
+      "limitWillBeUpdated": "Limiit uueneb",
+      "noCommissionCashOut": "Sularaha väljavõtmine ilma komisjonitasuta",
+      "noCommissionExchange": "Valuutavahetus ilma komisjonitasuta",
+      "noCommissionDeals": "Tehingud ilma komisjonitasuta",
+      "noCommissionDayLimit": "Päevalimiit komisjonitasuta",
+      "dayLimitRemaining": "Jäänud päevase limiidi ulatuses ilma komisjonitasuta",
+      "changePlan": "Vaheta plaani",
+      "noCommissionDayLimitDescription": "Komisjonitasuta kuni 3 000 eurot kuus. Seejärel komisjon 2% või 1 euro. Limiit taastub 4. juulil 2025.",
+      "noCommissionDealsDescription": "Komisjonitasuta kuni 1 tehing kuus. Seejärel komisjon 0,25% summast või 1 euro. Limiit taastub 4. juulil 2025.",
+      "noCommissionExchangeDescription": "Valuutade, kaupade ja krüptovaluutade vahetus ilma komisjonitasuta kuni 1 000 eurot kuus. Seejärel komisjon 1%. Limiit taastub 4. juulil 2025.",
+      "noCommissionCashOutDescription": "Komisjonitasuta kuni 200 eurot kuus. Seejärel komisjon 2% või 1 euro. Limiit taastub 4. juulil 2025.",
+      "links": {
+        "contactWithTheBank": "Kontakt pangaga",
+        "myAgreements": "Minu lepingud",
+        "tariffLimits": "Hinnapiirangud"
+      }
+    },
+    "logout": {
+      "approveLogout": "Kinnitage väljalogimine",
+      "areYouSure": "Kas olete kindel, et soovite oma kontost välja logida?",
+      "title": "Väljalogimine"
+    },
+    "changePhoto": {
+      "choosePhoto": "Valige foto",
+      "openGallery": "Avage galerii",
+      "recent": "Hiljutised",
+      "edit": "Redigeeri fotot",
+      "uploadOrDrop": "Lohistage või laadige üles foto",
+      "photoFormat": "Foto suurus kuni 10 MB, formaat",
+      "addPhoto": "Lisa foto",
+      "placeImage": "Asetage pilt ringi sisse nii, nagu soovite.",
+      "chooseAnother": "Vali teine",
+      "profilePhoto": "Profiilipilt"
+    },
+    "changeData": {
+      "title": "Muuda andmeid",
+      "contacts": "Kontaktid"
+    },
+    "changeEmail": {
+      "newEmail": "Teie uus e-mail",
+      "doNotHaveOldEmailAccess": "Mul ei ole juurdepääsu vanale e-mailile",
+      "sendVerificationCodeToPhone": "Saata kinnituskood sõnumiga numbrile?"
+    },
+    "changePhoneNumber": {
+      "newPhoneNumber": "Teie uus number",
+      "doNotHaveOldPhoneNumberAccess": "Mul ei ole juurdepääsu vanale\n telefoninumbrile",
+      "sendVerificationCodeToEmail": "Saata kinnituskood\n e-mailile?"
+    },
+    "changeComcoraId": {
+      "newComcoraId": "Teie uus Comcora ID"
+    },
+    "changeAddress": {
+      "newAddress": "Teie uus aadress"
+    },
+    "messages": {
+      "addressChanged": {
+        "web": "Aadress on edukalt muudetud",
+        "mobile": "Olete edukalt muutnud oma\n koduaadressi"
+      },
+      "emailChanged": {
+        "web": "E-mail on edukalt muudetud",
+        "mobile": "Olete edukalt muutnud oma\n e-maili aadressi"
+      },
+      "phoneNumberChanged": {
+        "web": "Telefoninumber on edukalt muudetud",
+        "mobile": "Olete edukalt muutnud oma telefoninumbrit"
+      },
+      "comcoraIdChanged": {
+        "web": "Comcora ID on edukalt muudetud",
+        "mobile": "Olete edukalt muutnud oma\n Comcora ID"
+      }
+    },
+    "settings": {
+      "title": "Seaded",
+      "changeCodePassword": {
+        "web": "Muuda\n salasõna",
+        "mobile": "Muuda salasõna"
+      },
+      "devices": "Seadmed",
+      "pushNotifications": "Push-teavitused",
+      "language": "Keel",
+      "version": "Versioon",
+      "loginProfile": "Sisse logimine profiili",
+      "pinChange": {
+        "enterCurrentCode": "Kinnitage toiming, sisestades praeguse salasõna",
+        "comeUpWithNewCode": {
+          "web": "Mõelge välja uus salasõna rakendusse sisselogimiseks",
+          "mobile": "Mõelge välja uus salasõna\n rakendusse sisselogimiseks"
+        },
+        "enterCodeAgain": "Sisestage kood uuesti",
+        "pinChanged": {
+          "web": "Salasõna on edukalt muudetud",
+          "mobile": "Olete edukalt seadistanud\n salasõna"
+        },
+        "wrongPin": "Kood ei ühti. Proovi uuesti."
+      },
+      "deviceView": {
+        "thisDevice": "See seade",
+        "online": "Internetis",
+        "activeSessions": "Aktiivsed seansid",
+        "endAllSessions": "Lõpeta kõik seansid",
+        "approveLogout": "Kinnitage väljalogimine",
+        "areYouSure": "Kas olete kindel, et soovite sellest seadmetest välja logida?",
+        "areYouSureWantToEndAllSessions": "Kas olete kindel, et soovite lõpetada kõik aktiivsed seansid, välja arvatud praegune?",
+        "sessionEnded": "Seanss on edukalt lõpetatud",
+        "goToSettings": "Mine seadistustesse",
+        "approveAction": "Kinnitage\n toiming",
+        "endSessionForThisDevice": "Kas olete kindel, et soovite selle seadme seansi lõpetada?",
+        "end": "Lõpeta",
+        "endAllExceptThisDevice": "Lõpetada kõik aktiivsed seansid, välja arvatud praegune?",
+        "lastLogin": "Viimane külastus"
+      },
+      "theme": {
+        "system": "Süsteemi",
+        "light": "Hele",
+        "dark": "Tume"
+      }
+    },
+    "agreements": {
+      "confirmsTransactionsPeriod": "Kinnitab tehingud perioodi jooksul",
+      "currentAccountBalance": "Praegune kontojääk",
+      "accountStatement": "Konto väljavõte",
+      "availableBalanceStatement": "Saadaval oleva saldo tõend"
+    },
+    "switchUser": "Vaheta kasutajat",
+    "dropdown": {
+      "trigger": "Isikuandmed"
+    }
+  },
+  "home": {
+    "links": {
+      "eInvoices": "E-arved",
+      "newInvoice": "Uus e-arve",
+      "agreementOnPayments": "Püsimakseleping",
+      "eInvoice": "E-arve",
+      "editAgreement": "Muuda lepingut"
+    },
+    "products": {
+      "domesticPayment": "Kohalik makse",
+      "moneyRequest": "Raha nõudmine",
+      "eInvoices": "E-arved",
+      "betweenAccounts": "Kontode vahel",
+      "myProducts": "Minu tooted",
+      "totalFunds": "Kokku vahendeid",
+      "total": "Kokku"
+    },
+    "promoBanner": {
+      "mobileAppTitle": "Mobiilirakendus comcora",
+      "bestBank": "Parim mobiilipank\n Euroopas",
+      "downloadApp": "Laadige alla meie rakendus"
+    },
+    "footer": {
+      "downloadApp": "Laadige alla mobiilirakendus iOS-i ja Androidi jaoks",
+      "universalLicense": "AS 'Comcora'. Universaalne litsents nr 2312, 19. detsember 2018."
+    },
+    "popular": "Populaarne",
+    "hello": "Tere päevast,",
+    "contactsWidget": {
+      "title": "Aktiveeri kiiresti kontaktidele juurdepääsu",
+      "addContactCTA": "Lisa oma esimene kontakt",
+      "imageAlt": "contacts widget background"
+    }
+  },
+  "shared": {
+    "limits": {
+      "timePeriod": {
+        "day": "Jäänud päeva lõpuni",
+        "week": "Jäänud nädala lõpuni",
+        "month": "Jäänud kuu lõpuni"
+      },
+      "type": {
+        "account": {
+          "web": "Kontolimiit pole määratud",
+          "mobile": "Kontol pole limiiti"
+        },
+        "card": {
+          "web": "Kaardilimiit pole määratud",
+          "mobile": "Kaardil pole limiiti"
+        }
+      },
+      "periods": {
+        "day": {
+          "web": "Päeva kohta",
+          "mobile": "Päevane"
+        },
+        "month": {
+          "web": "Kuu kohta",
+          "mobile": "Kuu"
+        }
+      },
+      "messages": {
+        "limitChanged": "Kontolimiit edukalt muudetud",
+        "limitDisabled": "Kontolimiit edukalt keelatud",
+        "limitCantBeChanged": "Teil on juba limiit seatud. Te ei saa päeva- ja kuulimiiti vahetada ilma kehtivat limiiti esmalt keelamata.",
+        "limitChangedSuccess": "Limiit edukalt muudetud",
+        "dailyLimitCantBeGreaterThanMonthly": "Päevane limiit ei saa olla suurem kui kuu limiit",
+        "monthlyLimitCantBeLessThanDaily": "Kuu limiit ei saa olla väiksem kui päevane limiit"
+      },
+      "spendEntireAmount": {
+        "web": "Saate kulutada kogu summa kontolt",
+        "mobile": "Saate kulutada kõik"
+      },
+      "goToAccountsCards": "Mine kontode ja kaartide juurde",
+      "cardLimit": "Kaardi limiit",
+      "accountLimit": "Konto limiit",
+      "setLimit": "Määra limiit",
+      "currentLimitReached": "Praegune limiit on saavutatud",
+      "chooseConvenientLimitPeriod": "Valige mugav limiidiperiood",
+      "cardLimitCantBeGreater": "Kaardilimiit ei saa olla suurem kui kontolimiit",
+      "onEvery": "Iga",
+      "onEachDay": "Iga päev",
+      "onEachMonth": "Iga kuu",
+      "disableLimit": "Keela kaardilimiit",
+      "areYouSure": "Oled sa kindel?",
+      "limitDisableRisk": "Limiitide keelamine suurendab soovimatute\n tehingute riski",
+      "enlargeLimit": "Suurenda",
+      "changeManually": "Muuda käsitsi"
+    },
+    "contactsTitle": "Kontaktid",
+    "newContactCTA": "Uus kontakt",
+    "contactsList": "Kontaktide loend",
+    "searchContact": "Otsi Kontakti",
+    "contactsListEmpty": "Kontaktiloend on tühi",
+    "addNewContact": "Lisage uus kontakt, et tõlkimine oleks lihtsam"
+  },
+  "common": {
+    "dates": {
+      "day": "Päev",
+      "week": "Nädal",
+      "month": "Kuu",
+      "halfYear": "Pool aastat",
+      "year": "Aasta",
+      "selectRange": "Valige periood",
+      "dates": "Kuupäevad"
+    },
+    "dialog": {
+      "sure": "Oled sa kindel?",
+      "sendCodeToEmail": "Saada kood meilile?",
+      "noOldPhoneAccess": "Mul ei ole juurdepääsu oma vanale telefoninumbrile"
+    },
+    "inputLabel": {
+      "phoneNumber": "Telefoninumber",
+      "day": "Päev"
+    },
+    "placeholder": {
+      "search": "Otsing"
+    },
+    "notifications": {
+      "noResults": "Tulemusi ei leitud",
+      "tryChangingCriteria": "Proovige otsingukriteeriume muuta"
+    },
+    "buttonText": {
+      "debit": "Deebet",
+      "credit": "Krediit",
+      "clearFilters": "Puhasta filtrid",
+      "repeat": "Korrata",
+      "export": "Eksport",
+      "delete": "Kustuta",
+      "see": "Vaata",
+      "back": "Tagasi",
+      "update": "Uuenda",
+      "continue": "Jätka",
+      "ready": "Valmis",
+      "skip": "Jäta vahele",
+      "tryAgain": "Proovi uuesti",
+      "next": "Järgmine",
+      "newProduct": "Uus toode",
+      "start": "Alusta",
+      "ok": "Hästi",
+      "rename": "Nimeta ümber",
+      "save": "Salvesta",
+      "copyData": "Kopeeri andmed",
+      "copy": "Kopeeri",
+      "action": "Tegevused",
+      "transfer": "Ülekanne",
+      "request": "Taotlus",
+      "change": "Muuda",
+      "send": "Saada",
+      "share": "Jaga",
+      "pay": "Maksma",
+      "cancel": "Tühista",
+      "add": "Lisa",
+      "settings": "Seaded",
+      "showMore": "Näita rohkem",
+      "allow": "Luba",
+      "block": "Blokeeri",
+      "showProducts": "Näita tooteid",
+      "hideProducts": "Peida tooteid",
+      "selectAccountToTransfer": "Vali konto, mida soovid üle kanda",
+      "addSticker": "Lisa Kleebis",
+      "all": "Kõik",
+      "allContacts": "Kõik kontaktid",
+      "newContact": "Uus kontakt",
+      "makeTransfer": "Teha ülekande",
+      "addNew": "Lisa uus",
+      "edit": "Muuda",
+      "configure": "Seadista",
+      "deleteAllAccounts": "Kustuta kõik kontod"
+    },
+    "credentials": {
+      "recipientName": "Saaja nimi",
+      "bankAddress": "Panga nimi ja aadress",
+      "recipient": "Saaja",
+      "email": "E-post",
+      "referenceNumber": "Viitenumber",
+      "addComment": "Lisa Kommentaar",
+      "search": "Otsi",
+      "searchContact": "Otsi Kontakti",
+      "recipientCountry": "Saaja Panga Riik",
+      "currency": "Valuuta",
+      "nameSurname": "Ees- ja Perekonnanimi",
+      "companyName": "Ettevõtte Nimi",
+      "telephone": "Telefon",
+      "address": "Aadress",
+      "phoneNumber": "Telefoninumber",
+      "birthday": "Sünnikuupäev",
+      "residentialAddress": "Elukoht",
+      "country": "Riik",
+      "bankName": "Panga nimi",
+      "accountNumber": "Konto number",
+      "name": "Nimi"
+    },
+    "hint": {
+      "recipientName": "Praeguse saaja nimi",
+      "search": "Näiteks: Kohvik \"Sinine Austrit\""
+    },
+    "form": {
+      "optional": "Valikuline",
+      "required": "Nõutav",
+      "invalidName": "Nimi ei saa sisaldada numbreid või erakohad",
+      "fieldRequired": "See väli on kohustuslik",
+      "fieldMinLength": "Väli peab sisaldama vähemalt {{count}} tähemärki",
+      "invalidSpace": "Nimi ei tohi sisaldada ainult tühikut"
+    }
+  },
+  "banner": {
+    "title": "Laadi alla rakendus\n comcora",
+    "desc": "Rahahalduse lihtsustamine"
+  }
+}

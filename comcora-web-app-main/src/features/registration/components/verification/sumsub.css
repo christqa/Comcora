@@ -1,0 +1,7 @@
+.sdk-button.back-button {
+    visibility: hidden;
+}
+
+#sns-websdk-container {
+    background: 'red !important'
+}

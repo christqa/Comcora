@@ -60,7 +60,7 @@ jobs:
       - name: Start the frontend server
         run: |
           npm run dev &
-          sleep 10  # wait for the server to start
+          sleep 10  
 
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v

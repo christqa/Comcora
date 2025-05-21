@@ -1,0 +1,185 @@
+{
+  "general": {
+    "localization": {
+      "nativeLangName": "English",
+      "languageSelection": {
+        "mobile": "Select language",
+        "web": "Choose language"
+      },
+      "languageSelectionApplyControl": "Change"
+    },
+    "theme": {
+      "lightMode": "Light mode",
+      "darkMode": "Dark mode"
+    },
+    "goToHomeScreen": {
+      "mobile": "Go to home screen!",
+      "web": "Go to home"
+    },
+    "screenNotExists": "This screen does not exist.",
+    "error": {
+      "anErrorHasOccurred": "An error has occurred"
+    },
+    "contactWithTheBank": "Contact"
+  },
+  "contactWithTheBank": "Contact",
+  "hello": "Good afternoon,",
+  "downloadApp": "Download the mobile",
+  "IosAndroid": "app for IOS and Android",
+  "auth": {
+    "loginMethods": {
+      "smartId": "Smart-ID",
+      "mobileId": "Mobile-ID",
+      "login": "Login",
+      "IDCard": "ID Card"
+    },
+    "credentials": {
+      "login": "Login",
+      "password": "Password",
+      "userId": "User Id",
+      "phoneNumber": "Phone number",
+      "personalId": "Personal Id",
+      "cardNumber": "Card number",
+      "email": "Email"
+    },
+    "newPassword": {
+      "newPasswordHint": "A password consisting of any 6 digits will be used to log into your account.",
+      "newPasswordSetHint": "You can change the password for your account in the 'Settings' section.",
+      "comeUpWithNewPassword": "Create a new password",
+      "newPassword": "a new password",
+      "newPasswordSet": "New password set",
+      "repeatPassword": "Repeat the password",
+      "yourDataSecureMessage": "Your data is secure, you need to log in again",
+      "authorization": "Authorization"
+    },
+    "loginQR": {
+      "name": "Login by QR",
+      "codeScan": "Scan the code with the camera",
+      "onPhone": "on the phone"
+    },
+    "error": {
+      "text": "Error",
+      "errorOccurred": "Error occurred",
+      "authErrorMessageDescription": "Sorry, an authorization error occurred, let's try again"
+    },
+    "confirmation": {
+      "enterCode": "Enter the code from the message",
+      "enterSentCode": "Enter the code sent to the phone number",
+      "enterCodeEmail": "Enter the code sent to your email",
+      "askNewCodeAfter": "Request a new code after",
+      "askNewCode": "Request a new code"
+    },
+    "forgotPassword": {
+      "title": "I forgot my password",
+      "authentication": "Authentication",
+      "checkEmail": "check your email",
+      "enterCard": "Enter card number",
+      "anyCardComcora": "Any Comcora card will do",
+      "noCard": "I don't have a card",
+      "getAccessToBankServices": "To get access to banking services, call",
+      "contactBank": "or visit\n a branch",
+      "resetPasswordLinkSentToEmail": "A password reset link has been sent to your email",
+      "resetPasswordLinkSentToPhone": "A password reset link has been sent to your phone",
+      "checkMessages": "check your messages",
+      "chooseAuthMethod": "Choose authentication method",
+      "passwordRecoveryMessage": "An email with a password reset link has been sent to your email"
+    },
+    "pinSetUp": {
+      "requestHasBeenSentOnYourDevice": "The request has been sent to your device.",
+      "compareTheCodesAndEnterPin1": "Compare the codes and enter PIN1",
+      "comeUpWithCode": "Create a code",
+      "codeActiveOnly": "This code will only be valid for",
+      "forBrowser": "this browser",
+      "editCodeMessage": "The code for quick login to the bank can be changed in the “Settings” section",
+      "enterPinCode": "Enter the PIN code for authorization",
+      "forgotCode": "Forgot your code?",
+      "codeSet": "Your code has been successfully set"
+    },
+    "chooseLoginMethod": "Choose a convenient login method",
+    "loginInto": "Login",
+    "registration": {
+      "premium": "Premium",
+      "standard": "Standard",
+      "comissionlessTransactions": "Commission-Free Transactions",
+      "comissionlessTransactionsDesc": "Enjoy transactions with zero commission fees.",
+      "higherLimits": "Higher Transaction Limits",
+      "higherLimitsDesc": "Increase your transaction and withdrawal limits.",
+      "exclusiveOffers": "Exclusive Offers",
+      "exclusiveOffersDesc": "Get access to special promotions and rewards.",
+      "personalManager": "Personal Account Manager",
+      "personalManagerDesc": "Enjoy dedicated support from your personal manager.",
+      "transactionWithComission": "Transactions with Commission",
+      "transactionWithComissionDesc": "Standard transactions include commission fees.",
+      "lowLimits": "Lower Transaction Limits",
+      "lowLimitsDesc": "Limited transaction and withdrawal amounts.",
+      "limitedOffer": "Limited-Time Offer",
+      "limitedOfferDesc": "Exclusive benefits available for a short period.",
+      "noPersonaManager": "No Personal Manager",
+      "noPersonaManagerDesc": "Support is provided via general customer service.",
+      "connectPremiumAccount": "Upgrade to Premium",
+      "setLater": "Set later",
+      "chooseYourAccountType": "Choose Your Account Type",
+      "residentOfCountry": "You are a resident of the country",
+      "residentOf": "Are you a resident of {{country}}?",
+      "criticalData": "The data you selected is critical for successful registration at the bank.",
+      "step": "Step",
+      "from": "from",
+      "bankLogin": "Bank login",
+      "verificationCompleted": "Verification completed!",
+      "loginSuccessful": "Login via {{method}} was successful",
+      "insertIdCard": "Insert the ID card into the device",
+      "chooseRegistrationMethod": "Choose a convenient registration method",
+      "residentialAddress": "Residential address",
+      "streetHouse": "Street, house",
+      "apartment": "Apartment",
+      "confirmPersonalData": "By clicking the \"{{button}}\" button, I confirm that I have provided my personal data and agree to the terms of use of comcora",
+      "yourEmail": "Your Email",
+      "createLogin": "Create a login for entry",
+      "createOrUseSuggestedLogin": "Create a login or use one of the suggested ones below",
+      "loginCreated": "Login successfully created!",
+      "yourLogin": "Your login:",
+      "lettersAndNumbers": "Uppercase or lowercase Latin letters, numbers",
+      "activity": {
+        "studying": "Studying",
+        "working": "Working",
+        "entrepreneur": "Entrepreneur",
+        "notWorking": "Not working",
+        "until": "Until",
+        "moreThan": "More than",
+        "activityArea": "Your area of activity",
+        "monthlyIncome": "Your monthly income"
+      }
+    }
+  },
+  "common": {
+    "buttonText": {
+      "back": "Back",
+      "update": "Update",
+      "continue": "Continue",
+      "ready": "Ready",
+      "skip": "Skip",
+      "tryAgain": "Try again",
+      "next": "Next",
+      "previous": "Previous",
+      "start": "Start",
+      "ok": "OK",
+      "close": "Close",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "change": "Change",
+      "set": "Set"
+    },
+    "placeholder": {
+      "search": "Search"
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "message": "Sorry, the page you are looking for doesn't exist.",
+    "homeButton": "Go to homepage"
+  },
+  "globalError": {
+    "title": "Something went wrong!",
+    "button": "Try again"
+  }
+}

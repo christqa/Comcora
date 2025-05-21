@@ -1,0 +1,185 @@
+{
+  "general": {
+    "localization": {
+      "nativeLangName": "Eesti keel",
+      "languageSelection": {
+        "mobile": "Valige keel",
+        "web": "Keeleressursside valik"
+      },
+      "languageSelectionApplyControl": "Muuda"
+    },
+    "theme": {
+      "lightMode": "Kerge teema",
+      "darkMode": "Tume teema"
+    },
+    "goToHomeScreen": {
+      "mobile": "Mine avalehele!",
+      "web": "Avaleht"
+    },
+    "screenNotExists": "Sellist ekraani ei eksisteeri.",
+    "error": {
+      "anErrorHasOccurred": "On toimunud viga"
+    },
+    "contactWithTheBank": "Kontaktid"
+  },
+  "contactWithTheBank": "Kontaktid",
+  "hello": "Tere päevast,",
+  "downloadApp": "Laadige alla mobiilirakendus",
+  "IosAndroid": "IOS-i ja Androidi jaoks",
+  "auth": {
+    "loginMethods": {
+      "smartId": "Smart-ID",
+      "mobileId": "Mobile-ID",
+      "login": "Logi sisse",
+      "IDCard": "ID-kaart"
+    },
+    "credentials": {
+      "login": "Logi sisse",
+      "password": "Parool",
+      "userId": "Kasutaja ID",
+      "phoneNumber": "Telefoninumber",
+      "personalId": "Personal Id",
+      "cardNumber": "Kaardi number",
+      "email": "Email"
+    },
+    "newPassword": {
+      "newPasswordHint": "Teie kontole sisselogimiseks kasutatakse parooli, mis koosneb suvalistest 6 numbrist.",
+      "newPasswordSetHint": "Saate oma konto parooli muuta jaotises 'Seaded'.",
+      "comeUpWithNewPassword": "Mõelge välja uus parool",
+      "newPassword": "uus parool",
+      "newPasswordSet": "Uus parool on määratud",
+      "repeatPassword": "Korrake parooli",
+      "yourDataSecureMessage": "Teie andmed on turvalised, peate uuesti sisse logima",
+      "authorization": "Autoriseerimine"
+    },
+    "loginQR": {
+      "name": "QR-sisselogimine",
+      "codeScan": "Skaneerige kood kaameraga",
+      "onPhone": "telefonil"
+    },
+    "error": {
+      "text": "Viga",
+      "errorOccurred": "Tekkis viga",
+      "authErrorMessageDescription": "Vabandust, ilmnes autoriseerimisviga, proovime uuesti"
+    },
+    "confirmation": {
+      "enterCode": "Sisestage sõnumis olev kood",
+      "enterSentCode": "Sisestage telefoninumbrile saadetud kood",
+      "enterCodeEmail": "Sisestage oma e-posti aadressile saadetud kood",
+      "askNewCodeAfter": "Uue koodi saamine võimalik pärast",
+      "askNewCode": "Küsi uus kood"
+    },
+    "forgotPassword": {
+      "title": "Ma unustasin parooli",
+      "authentication": "Autentimine",
+      "checkEmail": "kontrollige oma e-posti",
+      "enterCard": "Sisestage kaardi number",
+      "anyCardComcora": "Sobib ükskõik milline Comcora kaart",
+      "noCard": "Mul ei ole kaarti",
+      "getAccessToBankServices": "Panga teenuste kasutamiseks helistage numbril",
+      "contactBank": "või pöörduge\n haru",
+      "resetPasswordLinkSentToEmail": "Parooli lähtestamise link on saadetud teie e-posti aadressile",
+      "resetPasswordLinkSentToPhone": "Parooli lähtestamise link on saadetud teie telefonile",
+      "checkMessages": "kontrollige oma sõnumeid",
+      "chooseAuthMethod": "Valige autentimise meetod",
+      "passwordRecoveryMessage": "Parooli lähtestamise link on saadetud teie e-posti aadressile"
+    },
+    "pinSetUp": {
+      "requestHasBeenSentOnYourDevice": "Päring on saadetud teie seadmesse.",
+      "compareTheCodesAndEnterPin1": "Võrrelge koode ja sisestage PIN1",
+      "comeUpWithCode": "Mõelge välja kood",
+      "codeActiveOnly": "See kood kehtib ainult",
+      "forBrowser": "selle brauseri jaoks",
+      "editCodeMessage": "Panga kiireks sisenemiseks mõeldud koodi saab muuta jaotises „Seaded“",
+      "enterPinCode": "Enter the PIN code for authorization",
+      "forgotCode": "Unustasid koodi?",
+      "codeSet": "Teie kood on edukalt määratud"
+    },
+    "chooseLoginMethod": "Valige sobiv sisselogimise meetod",
+    "loginInto": "Logi sisse",
+    "registration": {
+      "premium": "Premium",
+      "standard": "Standard",
+      "comissionlessTransactions": "Komisjonivabad tehingud",
+      "comissionlessTransactionsDesc": "Nautige tehinguid ilma komisjonitasudeta.",
+      "higherLimits": "Suuremad tehingulimiidid",
+      "higherLimitsDesc": "Suurendage oma tehingu- ja väljamakse limiite.",
+      "exclusiveOffers": "Eksklusiivsed pakkumised",
+      "exclusiveOffersDesc": "Saage juurdepääs eripakkumistele ja preemiatele.",
+      "personalManager": "Personaalne kontohaldur",
+      "personalManagerDesc": "Nautige pühendatud tuge oma isiklikult haldurilt.",
+      "transactionWithComission": "Tehingud komisjonitasuga",
+      "transactionWithComissionDesc": "Standardtehingud sisaldavad komisjonitasusid.",
+      "lowLimits": "Madalamad tehingulimiidid",
+      "lowLimitsDesc": "Piiratud tehingu- ja väljamaksesummad.",
+      "limitedOffer": "Ajaline piiratud pakkumine",
+      "limitedOfferDesc": "Eksklusiivsed eelised piiratud ajaks.",
+      "noPersonaManager": "Pole isiklikku kontohaldurit",
+      "noPersonaManagerDesc": "Tugi on saadaval üldise klienditeeninduse kaudu.",
+      "connectPremiumAccount": "Uuenda Premium-kontoks",
+      "setLater": "Määra hiljem",
+      "chooseYourAccountType": "Valige oma kontotüüp",
+      "residentOfCountry": "Sa oled riigi resident",
+      "residentOf": "Kas te olete {{country}} resident?",
+      "criticalData": "Teie valitud andmed on kriitilise tähtsusega edukaks registreerimiseks pangas.",
+      "step": "Samm",
+      "from": "alates",
+      "bankLogin": "Panga sisselogimine",
+      "verificationCompleted": "Verifitseerimine on lõpetatud!",
+      "loginSuccessful": "Sisselogimine {{method}} kaudu oli edukas",
+      "insertIdCard": "Sisestage ID-kaart seadmesse",
+      "chooseRegistrationMethod": "Valige mugav registreerimismeetod",
+      "residentialAddress": "Elukoha aadress",
+      "streetHouse": "Tänav, maja",
+      "apartment": "Korter",
+      "confirmPersonalData": "Nupule „{{button}}” vajutades kinnitan, et olen esitanud oma isikuandmed ja nõustun comcora kasutustingimustega",
+      "yourEmail": "Teie e-post",
+      "createLogin": "Looge sisselogimiseks kasutajanimi",
+      "createOrUseSuggestedLogin": "Looge kasutajanimi või kasutage ühte allpool pakutud kasutajanime",
+      "loginCreated": "Kasutajanimi edukalt loodud!",
+      "yourLogin": "Teie kasutajanimi:",
+      "lettersAndNumbers": "Suured või väikesed ladina tähed, numbrid",
+      "activity": {
+        "studying": "Õpin",
+        "working": "Töötan",
+        "entrepreneur": "Ettevõtja",
+        "notWorking": "Ei tööta",
+        "until": "Kuni",
+        "moreThan": "Rohkem kui",
+        "activityArea": "Teie tegevusvaldkond",
+        "monthlyIncome": "Teie igakuine sissetulek"
+      }
+    }
+  },
+  "common": {
+    "buttonText": {
+      "back": "Tagasi",
+      "update": "Uuenda",
+      "continue": "Jätka",
+      "ready": "Valmis",
+      "skip": "Jäta vahele",
+      "tryAgain": "Proovi uuesti",
+      "next": "Järgmine",
+      "previous": "Eelmine",
+      "start": "Alusta",
+      "ok": "Hästi",
+      "close": "Sulge",
+      "cancel": "Tühista",
+      "confirm": "Kinnita",
+      "change": "Muuda",
+      "set": "Määra"
+    },
+    "placeholder": {
+      "search": "Otsing"
+    }
+  },
+  "notFound": {
+    "title": "Lehte ei leitud",
+    "message": "Vabandust, otsitavat lehte ei eksisteeri.",
+    "homeButton": "Mine avalehele"
+  },
+  "globalError": {
+    "title": "Midagi läks valesti!",
+    "button": "Proovi uuesti"
+  }
+}

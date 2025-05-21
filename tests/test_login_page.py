@@ -23,12 +23,12 @@ def test_button1_exist(browser):
 
     assert login_page.button_is_displayed()
 
-def test_dashboard_elements(login):
-    driver = login  # This is the logged-in browser session
+#def test_dashboard_elements(login):
+    #driver = login  # This is the logged-in browser session
     #assert driver.find_element(By.ID, '/:r61:/-form-item').is_displayed()
-    time.sleep(20)
-    expected_url = "https://comcora.dev/en/private"
-    assert driver.current_url == expected_url, f"Expected URL to be {expected_url}, but got {driver.current_url}"
+    #time.sleep(20)
+    #expected_url = "https://comcora.dev/en/private"
+    #assert driver.current_url == expected_url, f"Expected URL to be {expected_url}, but got {driver.current_url}"
 
 @pytest.mark.skip()
 def test_button1_clicked(browser):

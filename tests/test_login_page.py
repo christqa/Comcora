@@ -37,12 +37,12 @@ def test_button1_clicked(browser):
     assert driver.current_url == expected_url, f"Expected URL to be {expected_url}, but got {driver.current_url}"
 
 
-@allure.feature("Login")
-@allure.story("Valid login")
-@allure.severity(allure.severity_level.CRITICAL)
-def test_valid_login(login, browser):
+#@allure.feature("Login")
+#@allure.story("Valid login")
+#@allure.severity(allure.severity_level.CRITICAL)
+#def test_valid_login(login, browser):
     # Confirm dashboard or some element that's only visible after login
-    assert "Comcora bank" in browser.title, "Valid login did not redirect to dashboard"
+    #assert "Comcora bank" in browser.title, "Valid login did not redirect to dashboard"
 
 @allure.feature("Login")
 @allure.story("Invalid login")

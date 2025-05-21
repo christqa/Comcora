@@ -55,6 +55,7 @@ def browser():
 
     driver.implicitly_wait(IMPLICIT_WAIT)
     driver.get("http://localhost:8000/en")
+    driver.get("file://" + os.getcwd() + "/index.html")
     yield driver
     driver.quit()
 

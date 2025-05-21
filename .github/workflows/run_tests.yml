@@ -49,8 +49,22 @@ jobs:
           sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
 
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install frontend dependencies
+        run: npm install
+
+      - name: Start the frontend server
+        run: |
+          npm run dev &
+          sleep 10  # wait for the server to start
+
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v
+
 
 
 

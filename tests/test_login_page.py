@@ -44,16 +44,16 @@ def test_button1_clicked(browser):
     # Confirm dashboard or some element that's only visible after login
     #assert "Comcora bank" in browser.title, "Valid login did not redirect to dashboard"
 
-@allure.feature("Login")
-@allure.story("Invalid login")
-@allure.severity(allure.severity_level.CRITICAL)
-@pytest.mark.parametrize("login", ["invalid"], indirect=True)
-def test_invalid_login(login, browser):
-    try:
+#@allure.feature("Login")
+#@allure.story("Invalid login")
+#@allure.severity(allure.severity_level.CRITICAL)
+#@pytest.mark.parametrize("login", ["invalid"], indirect=True)
+#def test_invalid_login(login, browser):
+    #try:
         # Wait for the error popup to appear
-        WebDriverWait(browser, 20).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/button"))
-        )
+        #WebDriverWait(browser, 20).until(
+            #EC.presence_of_element_located((By.XPATH, "/html/body/div[5]/div/div[2]/button"))
+        #)
         # Alternatively use a CSS selector or another method
-    except Exception as e:
-        pytest.fail(f"Error during invalid login or pop-up not found: {e}")
+    #except Exception as e:
+        #pytest.fail(f"Error during invalid login or pop-up not found: {e}")

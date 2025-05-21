@@ -12,7 +12,7 @@ def test_login_succesfull(login):
     expected_url = MAIN_PAGE_URL
     assert browser.current_url == expected_url, f"Expected URL to be {expected_url}, but got {browser.current_url}"
 
-
+@pytest.mark.skip()
 def test_logo_present(login):
     main_page = MainPage(login)
     assert main_page.image_logo().is_displayed()

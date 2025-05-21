@@ -54,7 +54,7 @@ def browser():
         driver = webdriver.Firefox(service=service, options=options)
 
     driver.implicitly_wait(IMPLICIT_WAIT)
-    driver.get("https://comcora.dev/en")
+    driver.get("http://localhost:3000/en")
     yield driver
     driver.quit()
 

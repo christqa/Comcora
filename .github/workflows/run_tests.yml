@@ -52,11 +52,5 @@ jobs:
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v
 
-      - name: Add to /etc/hosts
-        run: |
-          echo "127.0.0.1 comcora.dev" | sudo tee -a /etc/hosts
 
-      - name: Start app
-        run: |
-          python -m http.server 8000 &  
 

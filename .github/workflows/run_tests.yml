@@ -1,6 +1,6 @@
 name: UI Tests
 
-on: [push, pull_request]
+on: push
 
 jobs:
   ui-tests:
@@ -55,11 +55,14 @@ jobs:
           node-version: '18'
 
       - name: Install frontend dependencies
-        run: npm install
+        run: |
+          cd comcora-web-app-main
+          npm install
 
       - name: Start the frontend server
         run: |
-          npm run dev &
+          cd comcora-web-app-main
+           nohup npm run dev &
           sleep 10  
 
       - name: Run tests

@@ -2,12 +2,12 @@ FROM node:18-alpine as base
 WORKDIR /app
 EXPOSE 3000
 
-FROM base as builder
+FROM base AS builder
 ARG NEXT_PUBLIC_BASE_URL
 ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
 WORKDIR /app
 RUN apk add --no-cache g++ make py3-pip libc6-compat
-COPY .npmrc ./
+#COPY .npmrc ./
 COPY package*.json ./
 RUN npm ci
 COPY . .

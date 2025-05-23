@@ -25,6 +25,8 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 USER nextjs
 
+ARG NPM_TOKEN
+RUN echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc && npm ci
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/next.config.js ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./

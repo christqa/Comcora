@@ -51,7 +51,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd comcora-web-app-main
-          docker build -t comcora-web-production . \
+          docker  build --build-arg NPM_TOKEN=${{ secrets.NPM_TOKEN }} comcora-web-production . \
             --build-arg NEXT_PUBLIC_BASE_URL=http://localhost:3000 \
             --build-arg SESSION_SECRET=secret
 

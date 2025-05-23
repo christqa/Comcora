@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4108207-2dab-42b1-a56b-9038fbd2cb3b" name="Changes" comment="new python file" />
+    <list default="true" id="a4108207-2dab-42b1-a56b-9038fbd2cb3b" name="Changes" comment="new python file">
+      <change beforePath="$PROJECT_DIR$/comcora-web-app-main/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/comcora-web-app-main/Dockerfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

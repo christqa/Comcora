@@ -53,10 +53,6 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install frontend dependencies
-        run: |
-          cd comcora-web-app-main
-          npm install
 
       - name: Start frontend server
         run: |

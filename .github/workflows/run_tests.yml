@@ -54,7 +54,8 @@ jobs:
          --build-arg NPM_TOKEN=${{ secrets.NPM_TOKEN }} \
          --build-arg NEXT_PUBLIC_BASE_URL=http://localhost:3000 \
          --build-arg SESSION_SECRET=secret \
-         -t comcora-web-production .
+         --build-arg NPM_TOKEN=${{ secrets.TEST }}
+          -t comcora-web-production .
 
       
 

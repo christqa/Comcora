@@ -47,14 +47,14 @@ jobs:
           sudo chmod +x /usr/local/bin/chromedriver
       
       
-  - name: Build Docker image
-    run: |
-      cd comcora-web-app-main
-      docker build \
-        --build-arg NPM_TOKEN=${{ secrets.NPM_TOKEN }} \
-        --build-arg NEXT_PUBLIC_BASE_URL=http://localhost:3000 \
-        --build-arg SESSION_SECRET=secret \
-        -t comcora-web-production .
+      - name: Build Docker image
+        run: |
+         cd comcora-web-app-main
+         docker build \
+         --build-arg NPM_TOKEN=${{ secrets.NPM_TOKEN }} \
+         --build-arg NEXT_PUBLIC_BASE_URL=http://localhost:3000 \
+         --build-arg SESSION_SECRET=secret \
+         -t comcora-web-production .
 
       
 

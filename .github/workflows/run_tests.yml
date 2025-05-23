@@ -33,8 +33,7 @@ jobs:
           sudo apt-get install -y google-chrome-stable
 
       - name: Install jq
-        run: |
-          sudo apt-get install -y jq
+        run: sudo apt-get install -y jq
 
       - name: Install ChromeDriver (matching Chrome version)
         run: |
@@ -54,19 +53,15 @@ jobs:
         with:
           node-version: '18'
 
-
-
-      - name: Start the frontend server
+      - name: Install frontend dependencies
         run: |
           cd comcora-web-app-main
-           nohup npm run dev &
-          sleep 10  
+          npm install
 
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-
-      - name: Start app
-        run: npm run dev &
+      - name: Start frontend server
+        run: |
+          cd comcora-web-app-main
+          nohup npm run dev > /dev/null 2>&1 &
 
       - name: Wait for app to be ready
         run: |
@@ -79,6 +74,8 @@ jobs:
             sleep 2
           done
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v

@@ -65,6 +65,13 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
+      - name: Start app
+        run: npm run dev &
+
+      - name: Wait for app to be ready
+        run: |
+          for i in {1..30}; do
+
 
       - name: Run tests
         run: pytest --maxfail=1 --disable-warnings -v

@@ -45,11 +45,9 @@ jobs:
           unzip chromedriver.zip
           sudo mv chromedriver-linux64/chromedriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
-          
 
       - name: Build Docker image
-        run: docker build -t comcora-web-production .
-
+        run: docker build --build-arg NPM_TOKEN=${{ secrets.TEST }} -t comcora-web-production .
 
       - name: Start frontend from Docker
         run: |
@@ -68,8 +66,3 @@ jobs:
 
       - name: Run UI tests
         run: pytest --maxfail=1 --disable-warnings -v
-
-
-
-
-          

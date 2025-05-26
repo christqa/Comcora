@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4108207-2dab-42b1-a56b-9038fbd2cb3b" name="Changes" comment="new python file">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/run_tests.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/run_tests.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

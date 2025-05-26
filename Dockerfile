@@ -3,11 +3,15 @@ WORKDIR /app
 EXPOSE 3000
 
 FROM base as builder
+ARG NPM_TOKEN
+ENV NPM_TOKEN=${NPM_TOKEN}
 ARG NEXT_PUBLIC_BASE_URL
 ENV NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
 WORKDIR /app
 RUN apk add --no-cache g++ make py3-pip libc6-compat
-COPY .npmrc ./
+# Create .npmrc with the token
+RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+#COPY .npmrc ./
 COPY package*.json ./
 RUN npm ci
 COPY . .

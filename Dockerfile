@@ -12,7 +12,7 @@ RUN apk add --no-cache g++ make py3-pip libc6-compat
 # Create .npmrc with the token
 RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 #COPY .npmrc ./
-COPY package*.json ./
+COPY package*.json package-lock.json ./
 RUN npm ci
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED="1" \

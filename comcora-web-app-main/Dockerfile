@@ -1,6 +1,7 @@
 FROM node:18-alpine AS base
 WORKDIR /app
 EXPOSE 3000
+#CI
 
 FROM base AS builder
 

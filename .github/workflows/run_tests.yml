@@ -80,3 +80,17 @@ jobs:
         run: |
           docker stop comcora-app
           docker rm comcora-app
+          
+      - name: Create .npmrc with NPM token
+        run: |
+         echo "//registry.npmjs.org/:_authToken=${{ secrets.TEST }}" > .npmrc
+
+      - name: Build Docker image
+        run: |
+         cd comcora-web-app-main
+         docker build -t comcora-web-production .
+
+      - name: Cleanup .npmrc
+        run: rm -f .npmrc
+
+          

@@ -15,10 +15,13 @@ RUN apk add --no-cache g++ make py3-pip libc6-compat
 COPY package*.json ./
 
 # Use ARG for npm token if needed (only in builder stage)
-ARG NPM_TOKEN
-RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-
+# No ARG NPM_TOKEN here
+COPY package*.json ./
+COPY .npmrc ./
 RUN npm ci
+
+
+
 
 # Remove npm token from .npmrc for security
 RUN rm -f .npmrc

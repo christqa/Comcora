@@ -50,7 +50,6 @@
     "@types/lodash.isequal": "^4.5.8",
     "@types/react-dropzone": "^5.1.0",
     "@vis.gl/react-google-maps": "^1.0.2",
-    "@xdatagroup/tbb-sdk": "^1.1.14",
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

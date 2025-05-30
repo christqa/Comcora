@@ -15,7 +15,7 @@ RUN npm ci
 
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED="1" NODE_ENV=production
-R
+
 
 FROM base AS production
 WORKDIR /app

@@ -1,0 +1,13 @@
+name: Artifact Smoke Test
+
+on: [ push ]
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hello > hi.txt
+      - uses: actions/upload-artifact@v3
+        with:
+          name: hi
+          path: hi.txt

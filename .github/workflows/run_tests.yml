@@ -25,42 +25,24 @@ jobs:
     runs-on: ubuntu-latest
     name: Download history
     steps:
-      - name: setup Python
-        uses: actions/setup-python@v4
+      - name: Download Allure history artifact
+        uses: actions/download-artifact@v4
         with:
-          python-version: "3.10"
+          name: allure-results
+          path: allure-results
 
-      - run: >
-          ARTIFACT_ID=$(curl -L 
-          -H "Accept: application/vnd.github+json" 
-          -H "X-GitHub-Api-Version: 2022-11-28" 
-          "https://api.github.com/repos/senior-tester/run-tests-demo/actions/artifacts?name=allure-results" 
-          | python -c "import sys, json; print(json.load(sys.stdin)['artifacts'][0]['id']);") 
-          &&
-          curl -L 
-          -H "Accept: application/vnd.github+json" 
-          -H "Authorization: Bearer ${{ secrets.TOKEN }}" 
-          -H "X-GitHub-Api-Version: 2022-11-28" 
-          https://api.github.com/repos/senior-tester/run-tests-demo/actions/artifacts/$ARTIFACT_ID/zip 
-          -o artifacts.zip &&
-          REPORT_ID=$(curl -L 
-          -H "Accept: application/vnd.github+json" 
-          -H "X-GitHub-Api-Version: 2022-11-28" 
-          "https://api.github.com/repos/senior-tester/run-tests-demo/actions/artifacts?name=github-pages" 
-          | python -c "import sys, json; print(json.load(sys.stdin)['artifacts'][0]['id']);") 
-          &&
-          curl -L 
-          -H "Accept: application/vnd.github+json" 
-          -H "Authorization: Bearer ${{ secrets.TOKEN }}" 
-          -H "X-GitHub-Api-Version: 2022-11-28" 
-          https://api.github.com/repos/senior-tester/run-tests-demo/actions/artifacts/$REPORT_ID/zip 
-          -o pages.zip
+      - name: Download Pages history artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: pages_history
 
-      - run: mkdir allure-results && unzip artifacts.zip -d allure-results
-      - run: mkdir old_pages pages_history && unzip pages.zip -d old_pages && tar -xvf old_pages/artifact.tar -C pages_history
-      - run: cp pages_history/history/* allure-results && cp -r pages_history/history allure-results
+      - name: Merge history into Allure results
+        run: |
+          mkdir -p allure-results/history
+          cp pages_history/history/* allure-results/history/
 
-      - name: Store allure history
+      - name: Store combined history
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
@@ -81,13 +63,16 @@ jobs:
           python-version: "3.10"
 
       - name: Install Chrome
-        run: sudo apt-get install google-chrome-stable
+        run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
 
-      - name: Install dependencies
+      - name: Install test dependencies
         run: pip install -r requirements.txt
 
-      - name: Download workflow artifacts
+      - name: Download Allure results
         uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
 
       - name: Run first test
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.deployment_target == 'first_test'
@@ -120,19 +105,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     name: Generate report
-
     steps:
       - uses: actions/setup-java@v4
         with:
           distribution: 'microsoft'
           java-version: '17'
 
-      - run: sudo wget https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz && sudo tar -zxvf allure-2.23.1.tgz -C /opt/ && sudo ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
+      - name: Install Allure CLI
+        run: |
+          wget -qO- https://github.com/allure-framework/allure2/releases/download/2.23.1/allure-2.23.1.tgz \
+            | tar -xzC /opt/ && ln -s /opt/allure-2.23.1/bin/allure /usr/bin/allure
 
-      - name: Download artifacts
+      - name: Download Allure results
         uses: actions/download-artifact@v4
+        with:
+          name: allure-results
+          path: allure-results
 
-      - run: allure generate -c allure-results -o _site
+      - name: Generate HTML report
+        run: allure generate -c allure-results -o _site
 
       - name: Store generated report
         uses: actions/upload-artifact@v4
@@ -145,13 +136,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: generate-report
     name: Report publication
-
     steps:
-      - name: Download artifacts
+      - name: Download HTML report
         uses: actions/download-artifact@v4
+        with:
+          name: _site
+          path: _site
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment

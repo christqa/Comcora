@@ -61,7 +61,7 @@ jobs:
       - run: cp pages_history/history/* allure-results && cp -r pages_history/history allure-results
 
       - name: Store allure history
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results
@@ -73,7 +73,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -87,7 +87,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Download workflow artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
 
       - name: Run first test
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.deployment_target == 'first_test'
@@ -122,7 +122,7 @@ jobs:
     name: Generate report
 
     steps:
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           distribution: 'microsoft'
           java-version: '17'

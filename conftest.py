@@ -1,10 +1,14 @@
+import subprocess
 import shutil
 import tempfile
 import pytest
 import time
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.edge.service import Service as EdgeService
-from selenium.webdriver.edge.options import EdgeOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
@@ -14,14 +18,16 @@ from config import (
     BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
 )
 
-@ pytest.fixture(scope="function")
+@pytest.fixture(scope="function")
 def browser():
-    """
-    Фикстура запуска браузера Edge (Chromium) с уникальным профилем.
-    """
-    # создаём временный каталог для профиля
-    profile_dir = tempfile.mkdtemp(prefix="edge_profile_")
+    # Убиваем оставшиеся процессы
+    subprocess.run(["pkill", "-f", "chrome"], check=False)
+    subprocess.run(["pkill", "-f", "chromedriver"], check=False)
+    subprocess.run(["pkill", "-f", "msedgedriver"], check=False)
+    subprocess.run(["pkill", "-f", "MicrosoftEdge"], check=False)
 
+    # создаём уникальную папку для профиля
+    profile_dir = tempfile.mkdtemp(prefix="browser_profile_")
     try:
         if BROWSER.lower() == "edge":
             options = EdgeOptions()
@@ -32,16 +38,11 @@ def browser():
                 options.add_argument("--no-sandbox")
                 options.add_argument("--disable-dev-shm-usage")
                 options.add_argument("--window-size=1920,1080")
-            # указываем временный профиль
             options.add_argument(f"--user-data-dir={profile_dir}")
-
-            # путь до msedgedriver должен быть в PATH или указан явно
             service = EdgeService(executable_path="/usr/local/bin/msedgedriver")
             driver = webdriver.Edge(service=service, options=options)
         else:
-            # fallback to Chrome as before
-            from selenium.webdriver.chrome.service import Service as ChromeService
-            from webdriver_manager.chrome import ChromeDriverManager
+            # fallback to Chrome
             options = webdriver.ChromeOptions()
             if HEADLESS:
                 options.add_argument("--headless")
@@ -56,9 +57,7 @@ def browser():
         driver.implicitly_wait(IMPLICIT_WAIT)
         driver.get(BASE_URL)
         yield driver
-
     finally:
-        # teardown: закрываем и удаляем профиль
         try:
             driver.quit()
         except Exception:
@@ -68,23 +67,42 @@ def browser():
 @pytest.fixture(scope="function")
 def login(request, browser):
     """
-    Фикстура логина для Edge/Chrome.
+    Фикстура логина: режимы 'valid' / 'invalid'.
+    Использование: @pytest.mark.parametrize("login", ["valid","invalid"], indirect=True)
     """
     actions = ActionChains(browser)
     actions.send_keys(Keys.ESCAPE).perform()
     actions.send_keys("thisisunsafe").perform()
 
-    user = request.param if hasattr(request, 'param') else 'valid'
-    username = VALID_TEST_USERNAME if user == 'valid' else INVALID_TEST_USERNAME
-    password = VALID_TEST_PASSWORD if user == 'valid' else INVALID_TEST_PASSWORD
+    username_input = browser.find_element(By.NAME, "username")
+    password_input = browser.find_element(By.NAME, "personalCode")
 
-    browser.find_element(By.NAME, "username").send_keys(username)
-    browser.find_element(By.NAME, "personalCode").send_keys(password)
+    # очищаем поля
+    browser.find_element(
+        By.XPATH,
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
+        '/form/div[1]/div[1]/div/div/button'
+    ).click()
+    browser.find_element(
+        By.XPATH,
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
+        '/form/div[1]/div[2]/div/div/button'
+    ).click()
+
+    mode = getattr(request, 'param', 'valid')
+    if mode == 'valid':
+        username, password = VALID_TEST_USERNAME, VALID_TEST_PASSWORD
+    else:
+        username, password = INVALID_TEST_USERNAME, INVALID_TEST_PASSWORD
+
+    username_input.send_keys(username)
+    password_input.send_keys(password)
+
     browser.find_element(By.CSS_SELECTOR, ".gap-x-2.rounded-2xl.py-4.px-0").click()
-
-    if user == 'valid':
+    if mode == 'valid':
         time.sleep(5)
         browser.find_element(By.CSS_SELECTOR, "#\\:r0\\:-form-item").send_keys(VALID_TEST_PIN)
-        browser.find_element(By.CSS_SELECTOR,
-                             "#radix-\\:r1\\: > div > div.flex.flex-col.gap-x-4 > button"
-                             ).click()
+        browser.find_element(
+            By.CSS_SELECTOR,
+            "#radix-\\:r1\\: > div > div.flex.flex-col.gap-x-4 > button"
+        ).click()

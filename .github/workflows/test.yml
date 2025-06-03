@@ -17,6 +17,8 @@ jobs:
        run: sudo apt-get install google-chrome-stable
      - name: install dependencies
        run: pip install -r requirements.txt
+     - name: Kill old Chrome instances
+       run: pkill chrome || true
      - name: Run test
        run: pytest
 

@@ -16,47 +16,56 @@ from config import (
     BASE_URL, BROWSER, HEADLESS, IMPLICIT_WAIT
 )
 
-@pytest.fixture(scope="function")
+@ pytest.fixture(scope="function")
 def browser():
-    # Создаём уникальную папку для профиля Chrome
+    """
+    Фикстура запуска браузера с уникальным временным профилем Chrome,
+    чтобы избежать конфликта директорий профиля.
+    """
+    # создаём уникальный каталог для пользовательских данных
     profile_dir = tempfile.mkdtemp(prefix="chrome_profile_")
 
-    if BROWSER.lower() == "chrome":
-        options = webdriver.ChromeOptions()
-        if HEADLESS:
-            options.add_argument("--headless")
-            options.add_argument("--no-sandbox")
-            options.add_argument("--disable-dev-shm-usage")
-            options.add_argument("--disable-gpu")
-            options.add_argument("--window-size=1920,1080")
-            # добавьте другие опции по необходимости
-        # Обязательно указываем уникальный профиль
-        options.add_argument(f"--user-data-dir={profile_dir}")
-
-        service = ChromeService(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=options)
-    else:
-        options = webdriver.FirefoxOptions()
-        if HEADLESS:
-            options.add_argument("--headless")
-        service = FirefoxService(GeckoDriverManager().install())
-        driver = webdriver.Firefox(service=service, options=options)
-
-    driver.implicitly_wait(IMPLICIT_WAIT)
-    driver.get(BASE_URL)
-
     try:
+        if BROWSER.lower() == "chrome":
+            options = webdriver.ChromeOptions()
+            if HEADLESS:
+                options.add_argument("--headless")
+                options.add_argument("--no-sandbox")
+                options.add_argument("--disable-dev-shm-usage")
+                options.add_argument("--disable-gpu")
+                options.add_argument("--window-size=1920,1080")
+                options.add_argument("--disable-software-rasterizer")
+                options.add_argument("--disable-features=VizDisplayCompositor")
+                options.add_argument("--allow-insecure-localhost")
+                options.add_argument("--disable-web-security")
+            # указываем временный профиль
+            options.add_argument(f"--user-data-dir={profile_dir}")
+
+            service = ChromeService(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=service, options=options)
+        else:
+            options = webdriver.FirefoxOptions()
+            if HEADLESS:
+                options.add_argument("--headless")
+            service = FirefoxService(GeckoDriverManager().install())
+            driver = webdriver.Firefox(service=service, options=options)
+
+        driver.implicitly_wait(IMPLICIT_WAIT)
+        driver.get(BASE_URL)
         yield driver
+
     finally:
+        # закрываем браузер и удаляем созданный профиль
+        try:
+            driver.quit()
+        except Exception:
+            pass
+        shutil.rmtree(profile_dir, ignore_errors=True)
 
-
-     driver.quit()
-    shutil.rmtree(profile_dir, ignore_errors=True)
-
-@pytest.fixture(scope="function")
+@ pytest.fixture(scope="function")
 def login(request, browser):
     """
-    Фикстура логина: поддерживает 'valid' и 'invalid' режимы.
+    Фикстура логина: поддерживает режимы 'valid' и 'invalid'.
     Использование: @pytest.mark.parametrize("login", ["valid", "invalid"], indirect=True)
     """
     actions = ActionChains(browser)
@@ -66,14 +75,14 @@ def login(request, browser):
     username_input = browser.find_element(By.NAME, "username")
     password_input = browser.find_element(By.NAME, "personalCode")
 
-    # Очистка полей перед вводом
+    # очистка полей перед вводом
     browser.find_element(By.XPATH,
-                         '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
-                         '/form/div[1]/div[1]/div/div/button'
+                         ('/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
+                          '/form/div[1]/div[1]/div/div/button')
                          ).click()
     browser.find_element(By.XPATH,
-                         '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
-                         '/form/div[1]/div[2]/div/div/button'
+                         ('/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
+                          '/form/div[1]/div[2]/div/div/button')
                          ).click()
 
     mode = getattr(request, 'param', 'valid')
@@ -85,7 +94,7 @@ def login(request, browser):
     username_input.send_keys(username)
     password_input.send_keys(password)
 
-    # Нажимаем кнопку логина
+    # нажимаем кнопку логина
     browser.find_element(By.CSS_SELECTOR, ".gap-x-2.rounded-2xl.py-4.px-0").click()
 
     if mode == 'valid':

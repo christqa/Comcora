@@ -2,6 +2,7 @@ import shutil
 import tempfile
 import pytest
 import time
+import subprocess
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -21,6 +22,8 @@ from config import (
 @pytest.fixture(scope="function")
 def browser():
     # 1) создаём уникальную папку для профиля Chrome
+    subprocess.run(["pkill", "-f", "chrome"], check=False)
+    subprocess.run(["pkill", "-f", "chromedriver"], check=False)
     profile_dir = tempfile.mkdtemp(prefix="chrome_profile_")
 
     try:

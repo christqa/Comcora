@@ -21,6 +21,8 @@ def browser():
 
     if BROWSER == "chrome":
         options = webdriver.ChromeOptions()
+        user_data_dir = tempfile.mkdtemp()
+        options.add_argument(f'--user-data-dir={user_data_dir}')
 
         if HEADLESS:
             options.add_argument('--ignore-certificate-errors')

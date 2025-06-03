@@ -1,12 +1,8 @@
-import shutil
-import tempfile
 import pytest
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
@@ -18,34 +14,22 @@ from config import (
 
 @pytest.fixture(scope="function")
 def browser():
-    # Создаём временный профиль для Chrome
-    temp_profile = None
-
-    if BROWSER == "chrome":
+    if BROWSER.lower() == "chrome":
         options = webdriver.ChromeOptions()
-
         if HEADLESS:
-            options.add_argument('--ignore-certificate-errors')
             options.add_argument("--headless")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--disable-gpu")
-            options.add_argument("--remote-debugging-port=9222")
             options.add_argument("--window-size=1920,1080")
-            options.add_argument("--disable-software-rasterizer")
-            options.add_argument("--disable-features=VizDisplayCompositor")
-            options.add_argument('--allow-insecure-localhost')
-            options.add_argument('--disable-web-security')
-
-        # === ВОТ ЗДЕСЬ: создаём уникальный каталог профиля ===
-        temp_profile = tempfile.mkdtemp(prefix="selenium_profile_")
-        options.add_argument(f"--user-data-dir={temp_profile}")
+            # … остальные опции без --user-data-dir …
 
         service = ChromeService(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=service, options=options)
 
     else:
-        # Для Firefox опция user-data-dir не нужна
+        from selenium.webdriver.firefox.service import Service as FirefoxService
+        from webdriver_manager.firefox import GeckoDriverManager
         options = webdriver.FirefoxOptions()
         if HEADLESS:
             options.add_argument("--headless")
@@ -54,18 +38,11 @@ def browser():
 
     driver.implicitly_wait(IMPLICIT_WAIT)
     driver.get(BASE_URL)
-
     yield driver
-
-    # Финализируем: закрываем браузер и удаляем профиль
     driver.quit()
-    if temp_profile:
-        shutil.rmtree(temp_profile, ignore_errors=True)
-
 
 @pytest.fixture(scope="function")
 def login(request, browser):
-    """Фикстура логина: поддерживает 'valid' и 'invalid' режимы."""
     actions = ActionChains(browser)
     actions.send_keys(Keys.ESCAPE).perform()
     actions.send_keys("thisisunsafe").perform()
@@ -73,17 +50,19 @@ def login(request, browser):
     username_input = browser.find_element(By.NAME, "username")
     password_input = browser.find_element(By.NAME, "personalCode")
 
-    # Чистим поля
-    browser.find_element(By.XPATH,
-                         '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
-                         '/form/div[1]/div[1]/div/div/button'
-                         ).click()
-    browser.find_element(By.XPATH,
-                         '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
-                         '/form/div[1]/div[2]/div/div/button'
-                         ).click()
+    # Очистка полей
+    browser.find_element(
+        By.XPATH,
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
+        '/form/div[1]/div[1]/div/div/button'
+    ).click()
+    browser.find_element(
+        By.XPATH,
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
+        '/form/div[1]/div[2]/div/div/button'
+    ).click()
 
-    mode = request.param if hasattr(request, "param") else "valid"
+    mode = getattr(request, "param", "valid")
     if mode == "valid":
         username, password = VALID_TEST_USERNAME, VALID_TEST_PASSWORD
     else:
@@ -91,14 +70,12 @@ def login(request, browser):
 
     username_input.send_keys(username)
     password_input.send_keys(password)
-
-    # Нажимаем кнопку логина
     browser.find_element(By.CSS_SELECTOR, ".gap-x-2.rounded-2xl.py-4.px-0").click()
 
     if mode == "valid":
         time.sleep(5)
-        # Ввод PIN
         browser.find_element(By.CSS_SELECTOR, "#\\:r0\\:-form-item").send_keys(VALID_TEST_PIN)
-        browser.find_element(By.CSS_SELECTOR,
-                             "#radix-\\:r1\\: > div > div.flex.flex-col.gap-x-4 > button"
-                             ).click()
+        browser.find_element(
+            By.CSS_SELECTOR,
+            "#radix-\\:r1\\: > div > div.flex.flex-col.gap-x-4 > button"
+        ).click()

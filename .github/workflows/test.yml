@@ -21,7 +21,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build frontend Docker image
-        working-directory: frontend
+        working-directory: comcora-web-app-main
         run: |
           docker build -t comcora-web-production . \
             --build-arg NEXT_PUBLIC_BASE_URL=http://localhost:3000 \

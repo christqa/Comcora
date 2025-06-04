@@ -50,11 +50,6 @@ jobs:
             sleep 3
           done
 
-      - name: Start test server
-        run: |
-          python manage.py runserver 0.0.0.0:8000 
-          sleep 5
-
 
       - name: Run tests
         run: pytest

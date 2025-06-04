@@ -6,6 +6,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chromium
+        ports:
+          - 4456:4444
+        options: >-
+          --shm-size 2g
+          --health-cmd "curl -f http://localhost:4444/wd/hub/status || exit 1"
+          --health-interval 5s
+          --health-timeout 2s
+          --health-retries 15
 
     steps:
       - name: Checkout repository

@@ -15,30 +15,31 @@ from config import (
 
 SELENIUM_URL = "http://localhost:4456/wd/hub"
 
+
+
 @pytest.fixture(scope="session", autouse=True)
 def selenium_container():
-    import subprocess
-
-    # Start Selenium container with explicit platform for compatibility (e.g., on M1/M2 Macs)
-    subprocess.run([
-        'docker', 'run', '-d', '--rm', '--platform', 'linux/arm64', '--shm-size=2g', '-p', '4456:4444', 'selenium/standalone-chromium:latest'
-    ])
-
-    # Wait until Selenium is ready (max 30 seconds)
-    for _ in range(30):
+    """
+    Wait until the Selenium container (started by GitHub Actions or Docker Compose) is ready.
+    No longer starts the container itself (Docker-in-Docker is not supported in CI by default).
+    """
+    print("Waiting for Selenium container to become ready...")
+    for _ in range(60):  # Wait up to 60 seconds
         try:
             resp = requests.get(f"{SELENIUM_URL}/status")
             if resp.status_code == 200 and resp.json().get("value", {}).get("ready", False):
+                print("Selenium container is ready.")
                 break
         except Exception:
             pass
         time.sleep(1)
     else:
-
         raise RuntimeError("Selenium container didn't become ready in time.")
 
     yield
-    # Container will auto-remove due to --rm flag on docker run
+    # No teardown needed — container is managed by CI
+    print("Selenium container session complete.")
+
 
 @pytest.fixture(scope="function")
 def browser():

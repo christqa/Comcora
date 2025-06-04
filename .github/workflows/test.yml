@@ -61,3 +61,9 @@ jobs:
         env:
           BASE_URL: http://localhost:3000
         run: pytest
+
+      - name: Cleanup containers
+        if: always()
+        run: |
+          docker stop comcora-frontend || true
+          docker stop selenium || true

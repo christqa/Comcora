@@ -56,7 +56,7 @@ def browser():
         options=chrome_opts
     )
     driver.implicitly_wait(IMPLICIT_WAIT)
-    BASE_URL = os.getenv("BASE_URL", "http://localhost:3000")
+    BASE_URL =  "http://localhost:3000"
     driver.get(f"{BASE_URL}/en")
     yield driver
     driver.quit()

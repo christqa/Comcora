@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+import config
 
 from config import (
     VALID_TEST_PASSWORD, VALID_TEST_PIN, VALID_TEST_USERNAME,
@@ -55,7 +56,7 @@ def browser():
         options=chrome_opts
     )
     driver.implicitly_wait(IMPLICIT_WAIT)
-    driver.get(BASE_URL)
+    driver.get("http://localhost:3000/en")
     yield driver
     driver.quit()
 

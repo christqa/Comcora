@@ -6,49 +6,49 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      selenium:
-        image: selenium/standalone-chromium
-        ports:
-          - 4456:4444
-        options: >-
-          --shm-size 2g
-          --health-cmd "curl -f http://localhost:4444/wd/hub/status || exit 1"
-          --health-interval 5s
-          --health-timeout 2s
-          --health-retries 15
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Start frontend server
-        run: |
-          cd comcora-web-app-main
-          npm run dev 
-          sleep 10      
-          
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install -r requirements.txt
 
-      - name: Kill any existing Chrome processes
-        run: pkill chrome || true
-
-      - name: Start Selenium Standalone (force x86_64 for multi-arch runners)
+      - name: Build frontend Docker image
+        working-directory: frontend
         run: |
-          docker run -d --rm --platform linux/amd64 -p 4444:4444 selenium/standalone-chrome:latest
+          docker build -t comcora-web-production . \
+            --build-arg NEXT_PUBLIC_BASE_URL=http://localhost:3000 \
+            --build-arg SESSION_SECRET=secret
 
-
-      - name: Wait for Selenium to become available
+      - name: Run frontend container
         run: |
-          for i in {1..10}; do
+          docker run -d --name comcora-frontend -p 3000:3000 comcora-web-production
+
+      - name: Wait for frontend to be available
+        run: |
+          for i in {1..15}; do
+            if curl -s http://localhost:3000 | grep -q "<html"; then
+              echo "✅ Frontend is ready"
+              break
+            fi
+            echo "⏳ Waiting for frontend..."
+            sleep 3
+          done
+
+      - name: Start Selenium Standalone Chrome
+        run: |
+          docker run -d --rm --name selenium -p 4444:4444 selenium/standalone-chrome:latest
+
+      - name: Wait for Selenium to be available
+        run: |
+          for i in {1..15}; do
             if curl -s http://localhost:4444/wd/hub/status | grep -q '"ready":true'; then
               echo "✅ Selenium is ready"
               break
@@ -57,8 +57,7 @@ jobs:
             sleep 3
           done
 
-
-      - name: Run tests
+      - name: Run smoke tests
         env:
-          BASE_URL: http://127.0.0.1:3000
+          BASE_URL: http://localhost:3000
         run: pytest

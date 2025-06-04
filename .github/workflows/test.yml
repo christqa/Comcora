@@ -52,4 +52,6 @@ jobs:
 
 
       - name: Run tests
+        env:
+          BASE_URL: http://127.0.0.1:3000
         run: pytest

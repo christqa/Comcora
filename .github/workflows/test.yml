@@ -24,7 +24,7 @@ jobs:
 
       - name: Start frontend server
         run: |
-          cd /Users/christinesargsyan/Documents/Automation/Comcora/comcora-web-app-main
+          cd comcora-web-app-main
           npm run dev 
           sleep 10      
           

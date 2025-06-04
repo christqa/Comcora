@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import allure
 
-@pytest.mark.skip()
+
 def test_button1_exist(browser):
     login_page = LoginPage(browser)
     login_page.open()

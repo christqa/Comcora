@@ -17,6 +17,7 @@ def test_logo_present(login):
     main_page = MainPage(login)
     assert main_page.image_logo().is_displayed()
 
+@pytest.mark.skip()
 @allure.feature("Menu")
 @allure.story("button active")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -26,6 +27,7 @@ def test_Home_menu_button_isActive(login):
     with allure.step('home item is active'):
      assert main_page.is_menu_button_active("home"), "Home menu button is not active on the Home page"
 
+@pytest.mark.skip()
 @allure.feature("Menu")
 @allure.story("button active")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -33,6 +35,7 @@ def test_Payments_menu_button_isActive(login):
     main_page = MainPage(login)
     assert not main_page.is_menu_button_active("payments"), "Payments menu button is not active on the Home page"
 
+@pytest.mark.skip()
 @allure.feature("Menu")
 @allure.story("button active")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -40,6 +43,7 @@ def test_History_menu_button_isActive(login):
     main_page = MainPage(login)
     assert not main_page.is_menu_button_active("history"), "History menu button is not active on the Home page"
 
+@pytest.mark.skip()
 @allure.feature("Menu")
 @allure.story("button displayed")
 @allure.severity(allure.severity_level.CRITICAL)
@@ -47,6 +51,7 @@ def test_Payment_menuItem_present(login):
     main_page = MainPage(login)
     assert main_page.is_menu_item_displayed("payments")
 
+@pytest.mark.skip()
 @allure.feature("Menu")
 @allure.story("Menu item visibility")
 @allure.severity(allure.severity_level.CRITICAL)

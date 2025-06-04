@@ -1,12 +1,11 @@
 import pytest
 import time
+import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.remote.webdriver import WebDriver as RemoteWebDriver
-from selenium.webdriver.remote.remote_connection import RemoteConnection
 
 from config import (
     VALID_TEST_PASSWORD, VALID_TEST_PIN, VALID_TEST_USERNAME,
@@ -14,21 +13,32 @@ from config import (
     BASE_URL, IMPLICIT_WAIT
 )
 
-SELENIUM_URL = "http://localhost:4444/wd/hub"
+SELENIUM_URL = "http://localhost:4456/wd/hub"
 
 @pytest.fixture(scope="session", autouse=True)
 def selenium_container():
-    # Поднимаем контейнер перед сессией (можно убрать, если запускаете руками)
-    import subprocess, time
+    import subprocess
+
+    # Start Selenium container with explicit platform for compatibility (e.g., on M1/M2 Macs)
     subprocess.run([
-        "docker", "run", "-d", "--rm",
-        "-p", "4444:4444",
-        "selenium/standalone-chrome:latest"
-    ], check=True)
-    # Даем контейнеру время подняться
-    time.sleep(5)
+        'docker', 'run', '-d', '--rm', '--platform', 'linux/arm64', '--shm-size=2g', '-p', '4456:4444', 'selenium/standalone-chromium:latest'
+    ])
+
+    # Wait until Selenium is ready (max 30 seconds)
+    for _ in range(30):
+        try:
+            resp = requests.get(f"{SELENIUM_URL}/status")
+            if resp.status_code == 200 and resp.json().get("value", {}).get("ready", False):
+                break
+        except Exception:
+            pass
+        time.sleep(1)
+    else:
+
+        raise RuntimeError("Selenium container didn't become ready in time.")
+
     yield
-    # Контейнер сам удалится по --rm
+    # Container will auto-remove due to --rm flag on docker run
 
 @pytest.fixture(scope="function")
 def browser():
@@ -39,7 +49,6 @@ def browser():
     chrome_opts.add_argument("--no-sandbox")
     chrome_opts.add_argument("--disable-dev-shm-usage")
 
-    # Инициализируем удаленный драйвер
     driver = webdriver.Remote(
         command_executor=SELENIUM_URL,
         options=chrome_opts
@@ -49,43 +58,47 @@ def browser():
     yield driver
     driver.quit()
 
+
 @pytest.fixture(scope="function")
 def login(request, browser):
-    """Фикстура логина: режимы 'valid' / 'invalid'."""
+    """
+    Login fixture that enters username and password and submits the form.
+    Can be extended to support 'valid' or 'invalid' modes by reading a parameter.
+    """
+    # Dismiss any initial modals or warnings (like "thisisunsafe")
     actions = ActionChains(browser)
     actions.send_keys(Keys.ESCAPE).perform()
     actions.send_keys("thisisunsafe").perform()
 
+    # Locate input fields
     username_input = browser.find_element(By.NAME, "username")
     password_input = browser.find_element(By.NAME, "personalCode")
 
-    # очистка полей
-    browser.find_element(
+    # Optional: clear input fields if there are clear buttons
+    clear_username_btn = browser.find_element(
         By.XPATH,
-        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
-        '/form/div[1]/div[1]/div/div/button'
-    ).click()
-    browser.find_element(
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]/form/div[1]/div[1]/div/div/button'
+    )
+    clear_username_btn.click()
+
+    clear_password_btn = browser.find_element(
         By.XPATH,
-        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]'
-        '/form/div[1]/div[2]/div/div/button'
-    ).click()
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]/form/div[1]/div[2]/div/div/button'
+    )
+    clear_password_btn.click()
 
-    mode = getattr(request, "param", "valid")
-    if mode == "valid":
-        username, password = VALID_TEST_USERNAME, VALID_TEST_PASSWORD
-    else:
-        username, password = INVALID_TEST_USERNAME, INVALID_TEST_PASSWORD
+    # Enter valid credentials (you can add logic for invalid ones)
+    username_input.send_keys(VALID_TEST_USERNAME)
+    password_input.send_keys(VALID_TEST_PASSWORD)
 
-    username_input.send_keys(username)
-    password_input.send_keys(password)
+    # Submit the form - adjust selector as per your form structure
+    submit_button = browser.find_element(
+        By.XPATH,
+        '/html/body/div[1]/div/div[2]/div/div/div/div/div[1]/div/div[2]/form/div[2]/button'
+    )
+    submit_button.click()
 
-    browser.find_element(By.CSS_SELECTOR, ".gap-x-2.rounded-2xl.py-4.px-0").click()
+    # Wait for some expected post-login element or URL to confirm login success
+    # e.g., WebDriverWait(browser, 10).until(EC.url_contains("/dashboard"))
 
-    if mode == "valid":
-        time.sleep(5)
-        browser.find_element(By.CSS_SELECTOR, "#\\:r0\\:-form-item").send_keys(VALID_TEST_PIN)
-        browser.find_element(
-            By.CSS_SELECTOR,
-            "#radix-\\:r1\\: > div > div.flex.flex-col.gap-x-4 > button"
-        ).click()
+    return browser

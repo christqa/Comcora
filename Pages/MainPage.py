@@ -26,25 +26,23 @@ class MainPage(BasePage):
     # ===== Menu Button Methods =====
     def is_menu_button_active(self, name):
         locator = self.menu_locators[name.lower()]
-        button = self.browser.find_element(*locator)
+        wait = WebDriverWait(self.browser, 20)
+        button = wait.until(EC.visibility_of_element_located(locator))
         classes = button.get_attribute("class")
         return self.ACTIVE_CLASS_NAME in classes
 
     def is_menu_item_displayed(self, name):
         locator = self.menu_locators[name.lower()]
-        WebDriverWait(self.browser, 10).until(
-            EC.visibility_of_element_located(locator)
-        )
-        return self.browser.find_element(*locator).is_displayed()
+        wait = WebDriverWait(self.browser, 20)
+        button = wait.until(EC.visibility_of_element_located(locator))
+        return button.is_displayed()
 
     # ===== Logo Methods =====
     def image_logo(self):
         return self.find(*self.image_logo_selector)
 
-
     @allure.step("logo_is_displayed")
     def image_logo_is_displayed(self):
-        WebDriverWait(self.browser, 10).until(
-            EC.visibility_of_element_located(self.image_logo_selector)
-        )
+        wait = WebDriverWait(self.browser, 20)
+        wait.until(EC.visibility_of_element_located(self.image_logo_selector))
         return self.image_logo().is_displayed()

@@ -23,8 +23,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Start frontend server
-        working-directory: comcora-web-app-main
         run: |
+          cd /Users/christinesargsyan/Documents/Automation/Comcora/comcora-web-app-main
           npm run dev 
           sleep 10      
           

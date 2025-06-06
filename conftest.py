@@ -6,41 +6,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-import config
 
 from config import (
     VALID_TEST_PASSWORD, VALID_TEST_PIN, VALID_TEST_USERNAME,
     INVALID_TEST_PASSWORD, INVALID_TEST_PIN, INVALID_TEST_USERNAME,
     BASE_URL, IMPLICIT_WAIT
 )
-
-SELENIUM_URL = "http://localhost:4456/wd/hub"
-
-
-
-@pytest.fixture(scope="session", autouse=True)
-def selenium_container():
-    """
-    Wait until the Selenium container (started by GitHub Actions or Docker Compose) is ready.
-    No longer starts the container itself (Docker-in-Docker is not supported in CI by default).
-    """
-    print("Waiting for Selenium container to become ready...")
-    for _ in range(60):  # Wait up to 60 seconds
-        try:
-            resp = requests.get(f"{SELENIUM_URL}/status")
-            if resp.status_code == 200 and resp.json().get("value", {}).get("ready", False):
-                print("Selenium container is ready.")
-                break
-        except Exception:
-            pass
-        time.sleep(1)
-    else:
-        raise RuntimeError("Selenium container didn't become ready in time.")
-
-    yield
-    # No teardown needed — container is managed by CI
-    print("Selenium container session complete.")
-
 
 @pytest.fixture(scope="function")
 def browser():
@@ -51,19 +22,17 @@ def browser():
     chrome_opts.add_argument("--no-sandbox")
     chrome_opts.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Remote(
-        command_executor=SELENIUM_URL,
-        options=chrome_opts
-    )
+    # If chromedriver is in your PATH, no need to specify executable_path
+    driver = webdriver.Chrome(options=chrome_opts)
     driver.implicitly_wait(IMPLICIT_WAIT)
-    BASE_URL =  "http://localhost:3000"
+
     driver.get(f"{BASE_URL}/en")
     yield driver
     driver.quit()
 
 
 @pytest.fixture(scope="function")
-def login(request, browser):
+def login(browser):
     """
     Login fixture that enters username and password and submits the form.
     Can be extended to support 'valid' or 'invalid' modes by reading a parameter.
@@ -101,7 +70,8 @@ def login(request, browser):
     )
     submit_button.click()
 
-    # Wait for some expected post-login element or URL to confirm login success
-    # e.g., WebDriverWait(browser, 10).until(EC.url_contains("/dashboard"))
+    # Optionally wait for login confirmation here (e.g., URL change or element)
+    # Example:
+    # WebDriverWait(browser, 10).until(EC.url_contains("/dashboard"))
 
     return browser

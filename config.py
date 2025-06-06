@@ -1,7 +1,7 @@
 # config.py
 import os
 
-BASE_URL = os.getenv("BASE_URL", "http://host.docker.internal:8000")
+BASE_URL = os.getenv("BASE_URL", "https://comcora.dev")
 MAIN_PAGE_URL = os.getenv("PRIVATE_PAGE_URL", "https://comcora.dev/en/private")
 
 

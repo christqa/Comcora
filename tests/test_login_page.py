@@ -30,7 +30,7 @@ def test_button1_exist(browser):
     #expected_url = "https://comcora.dev/en/private"
     #assert driver.current_url == expected_url, f"Expected URL to be {expected_url}, but got {driver.current_url}"
 
-@pytest.mark.skip()
+
 def test_button1_clicked(browser):
     browser.find_element(By.XPATH, "/html/body/form/button[1]").click()
     expected_url = "https://comcora.dev/en/private/contacts/new-contact"

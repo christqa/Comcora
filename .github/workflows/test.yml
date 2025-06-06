@@ -10,11 +10,6 @@ jobs:
       RUNNER_TOOL_CACHE: /Users/christinesargsyan/actions-runner/_toolcache
 
     steps:
-      - name: Ensure cache dir exists
-        run: |
-          mkdir -p /Users/christinesargsyan/actions-runner/_toolcache
-          chmod -R 777 /Users/christinesargsyan/actions-runner/_toolcache
-
       - name: Checkout repository
         uses: actions/checkout@v4
 

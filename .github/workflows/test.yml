@@ -7,8 +7,8 @@ jobs:
   test:
     runs-on: self-hosted
 
-  env:
-    RUNNER_TOOL_CACHE: /Users/christinesargsyan/actions-runner/_toolcache
+    env:
+      RUNNER_TOOL_CACHE: /Users/christinesargsyan/actions-runner/_toolcache
 
     steps:
       - name: Checkout repository
@@ -23,16 +23,11 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-  
-
       - name: Run frontend container
         run: |
           docker run -d --name comcora-frontend -p 3000:3000 comcora-web-production
-
 
       - name: Run smoke tests
         env:
           BASE_URL: http://comcora.dev
         run: pytest
-
-

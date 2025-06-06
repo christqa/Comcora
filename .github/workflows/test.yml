@@ -7,6 +7,9 @@ jobs:
   test:
     runs-on: self-hosted
 
+  env:
+    RUNNER_TOOL_CACHE: /Users/christinesargsyan/actions-runner/_toolcache
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

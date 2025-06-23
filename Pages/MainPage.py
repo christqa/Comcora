@@ -3,9 +3,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from Pages.BasePage import BasePage
 import allure
+import json
 
 class MainPage(BasePage):
-    image_logo_selector = (By.CSS_SELECTOR, ".size-18.shrink-0.text-fill-surface-inverse")
+    image_logo_selector = (By.XPATH, "/html/body/div[1]/div/div[1]/aside/div/div/header/img")
+    new_contact=(By.XPATH,"/html/body/div[1]/div/div[1]/main/div/div/div/div/div[3]/div[3]/a[1]/button/div[1]/div")
     ACTIVE_CLASS_NAME = "bg-fill-primary-inverse"
 
     def __init__(self, browser):
@@ -26,7 +28,7 @@ class MainPage(BasePage):
     # ===== Menu Button Methods =====
     def is_menu_button_active(self, name):
         locator = self.menu_locators[name.lower()]
-        wait = WebDriverWait(self.browser, 20)
+        wait = WebDriverWait(self.browser, 10)
         button = wait.until(EC.visibility_of_element_located(locator))
         classes = button.get_attribute("class")
         return self.ACTIVE_CLASS_NAME in classes
@@ -46,3 +48,19 @@ class MainPage(BasePage):
         wait = WebDriverWait(self.browser, 20)
         wait.until(EC.visibility_of_element_located(self.image_logo_selector))
         return self.image_logo().is_displayed()
+
+    def new_contact_button(self):
+        return self.find(*self.new_contact)
+
+    def test_new_contact_button_nav(self):
+        WebDriverWait(self.browser, 10).until(
+            EC.visibility_of_element_located(self.new_contact)
+
+        )
+
+        button = self.new_contact_button()
+        if button.is_displayed():
+         button.click()
+         return True
+        else:
+         return False

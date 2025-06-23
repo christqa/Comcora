@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from config import (
     VALID_TEST_PASSWORD, VALID_TEST_PIN, VALID_TEST_USERNAME,
@@ -16,7 +18,7 @@ from config import (
 @pytest.fixture(scope="function")
 def browser():
     chrome_opts = ChromeOptions()
-    chrome_opts.add_argument("--headless")
+    #chrome_opts.add_argument("--headless")
     chrome_opts.add_argument("--disable-gpu")
     chrome_opts.add_argument("--window-size=1920,1080")
     chrome_opts.add_argument("--no-sandbox")
@@ -70,6 +72,14 @@ def login(browser):
     )
     submit_button.click()
 
+    VALID_TEST_PIN = WebDriverWait(browser, 30).until(
+        EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[2]/div/div/div/div[1]/form/div/div/div[2]/input'))
+    )
+
+    VALID_TEST_PIN.send_keys('0000')
+    confirm_button=browser.find_element(By.XPATH,
+        '/html/body/div[5]/div/div[2]/button')
+    confirm_button.click()
     # Optionally wait for login confirmation here (e.g., URL change or element)
     # Example:
     # WebDriverWait(browser, 10).until(EC.url_contains("/dashboard"))

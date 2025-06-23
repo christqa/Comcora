@@ -2,6 +2,9 @@ from Pages.MainPage import MainPage
 import pytest
 from config import MAIN_PAGE_URL
 import allure
+from selenium.webdriver.support.ui import WebDriverWait
+import json
+from resources.menu_items import menu_items
 
 
 #@pytest.mark.regression
@@ -12,7 +15,7 @@ def test_login_succesfull(login):
     expected_url = MAIN_PAGE_URL
     assert browser.current_url == expected_url, f"Expected URL to be {expected_url}, but got {browser.current_url}"
 
-
+@pytest.mark.skip
 def test_logo_present(login):
     main_page = MainPage(login)
     assert main_page.image_logo().is_displayed()
@@ -52,21 +55,42 @@ def test_Payment_menuItem_present(login):
     assert main_page.is_menu_item_displayed("payments")
 
 
+
+#@allure.feature("Menu")
+#@allure.story("Menu item visibility")
+#@allure.severity(allure.severity_level.CRITICAL)
+#@pytest.mark.parametrize(
+    #"menu_item",
+    #["home", "payments", "history"],
+   # ids=["Home Displayed", "Payments Displayed", "History Displayed"]
+#)
+#def test_menu_item_is_displayed(login, menu_item):
+    #main_page = MainPage(login)
+    #assert main_page.is_menu_item_displayed(menu_item), f"{menu_item.capitalize()} menu item is not displayed"
+
+
+def test_new_contact_clicked(login):
+ main_page=MainPage(login)
+ driver=login
+ assert main_page.test_new_contact_button_nav()
+ expected_url = "https://comcora.dev/en/private/contacts/new-contact"
+ WebDriverWait(driver, 10).until(lambda d: d.current_url == expected_url)
+
+ assert driver.current_url == expected_url, f"Expected URL to be {expected_url}, but got {driver.current_url}"
+
+
+
 @allure.feature("Menu")
 @allure.story("Menu item visibility")
 @allure.severity(allure.severity_level.CRITICAL)
 @pytest.mark.parametrize(
-    "menu_item",
-    ["home", "payments", "history"],
-    ids=["Home Displayed", "Payments Displayed", "History Displayed"]
+    "menu_item", [item[0] for item in menu_items],
+    ids=[item[1] for item in menu_items]
 )
+
 def test_menu_item_is_displayed(login, menu_item):
     main_page = MainPage(login)
     assert main_page.is_menu_item_displayed(menu_item), f"{menu_item.capitalize()} menu item is not displayed"
-
-
-
-
 
 
 

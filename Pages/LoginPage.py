@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 button_selector = (By.CSS_SELECTOR, ".gap-x-2.rounded-2xl.py-4.px-0")
 
+
 class LoginPage(BasePage):
 
     def open(self):
@@ -27,3 +28,5 @@ class LoginPage(BasePage):
 
         # Now do your checks
         assert driver.find_element(By.ID, "welcome-message").is_displayed()
+
+

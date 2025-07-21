@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4108207-2dab-42b1-a56b-9038fbd2cb3b" name="Changes" comment="new python file">
-      <change afterPath="$PROJECT_DIR$/tests/resources/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/resources/menu_items.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/LoginPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/LoginPage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/MainPage.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/MainPage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_login_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_main_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_main_page.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +82,7 @@
       <recent name="$PROJECT_DIR$/tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_main_page.test_menu_item_is_displayed">
+  <component name="RunManager" selected="Python tests.Python tests for test_main_page.test_new_contact_clicked">
     <configuration name="Python tests for test_login_page.test_button1_clicked" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="Comcora" />
       <option name="ENV_FILES" value="" />
@@ -212,8 +205,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Python tests for test_main_page.test_menu_item_is_displayed" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_new_contact_clicked" />
+        <item itemvalue="Python tests.Python tests for test_main_page.test_menu_item_is_displayed" />
         <item itemvalue="Python tests.Python tests for test_login_page.test_button1_clicked" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_Home_menu_button_isActive" />
         <item itemvalue="Python tests.Python tests for test_main_page.test_Payments_menu_button_isActive" />
